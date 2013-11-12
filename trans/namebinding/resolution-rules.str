@@ -20,6 +20,10 @@ signature
 
 rules
 
+  nabl-get-scope =
+    ?Class(c, _, _, _)
+    ; ![NablNsField()]
+
   nabl-get-name :
     Class(c, _, _, _) -> c
 
@@ -38,7 +42,7 @@ rules
           , NablNsClass()
           , Unique()
           , Current()
-          , []
+          , [NablNsField()]
           )
         , id
         , id
@@ -171,13 +175,19 @@ rules
   nabl-scoping-site =
     ?Program(_, _)
     ; origin-track-forced(
-        nabl-scope(|[NablNsClass()])
+        nabl-scope(
+        | [NablNsClass(), NablNsMethod()]
+        )
       |
       )
 
   nabl-get-scope =
     ?Program(_, _)
-    ; ![NablNsClass()]
+    ; ![NablNsClass(), NablNsMethod()]
+
+  nabl-get-scope =
+    ?Method(_, m, _, _, _, _)
+    ; ![NablNsVar(), NablNsParam()]
 
   nabl-get-name :
     Method(_, m, _, _, _, _) -> m
@@ -198,7 +208,7 @@ rules
           , NablNsMethod()
           , Unique()
           , Current()
-          , []
+          , [NablNsVar(), NablNsParam()]
           )
         , id
         , id
@@ -237,17 +247,6 @@ rules
         )
       |
       )
-
-  nabl-scoping-site =
-    ?Program(_, _)
-    ; origin-track-forced(
-        nabl-scope(|[NablNsMethod()])
-      |
-      )
-
-  nabl-get-scope =
-    ?Program(_, _)
-    ; ![NablNsMethod()]
 
   nabl-get-name :
     Param(t, p) -> p
@@ -290,17 +289,6 @@ rules
       |
       )
 
-  nabl-scoping-site =
-    ?Method(_, _, _, _, _, _)
-    ; origin-track-forced(
-        nabl-scope(|[NablNsClass()])
-      |
-      )
-
-  nabl-get-scope =
-    ?Method(_, _, _, _, _, _)
-    ; ![NablNsClass()]
-
   nabl-get-name :
     Field(t, f) -> f
 
@@ -342,17 +330,6 @@ rules
       |
       )
 
-  nabl-scoping-site =
-    ?Class(_, _, _, _)
-    ; origin-track-forced(
-        nabl-scope(|[NablNsField()])
-      |
-      )
-
-  nabl-get-scope =
-    ?Class(_, _, _, _)
-    ; ![NablNsField()]
-
   nabl-get-name :
     Var(t, v) -> v
 
@@ -393,17 +370,6 @@ rules
         )
       |
       )
-
-  nabl-scoping-site =
-    ?Method(_, _, _, _, _, _)
-    ; origin-track-forced(
-        nabl-scope(|[NablNsVar()])
-      |
-      )
-
-  nabl-get-scope =
-    ?Method(_, _, _, _, _, _)
-    ; ![NablNsVar()]
 
   nabl-get-name :
     VarRef(v) -> v

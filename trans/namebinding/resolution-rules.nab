@@ -12,25 +12,23 @@ binding rules
 	// Class name resolution
 	//
 	
-	Class(c,_,_,_) : defines Class c
+	Class(c,_,_,_) : defines Class c scopes Field
 	MainClass(m,_,_) : defines Class m of type "mainClass"
 	
 	ClassType(c) : refers to Class c
 	Parent(c) : refers to Class c
 	NewObject(c) : refers to Class c
 	
-	Program(_,_) : scopes Class
+	Program(_,_) : scopes Class scopes Method
 	
 	
 	//
 	// Method name resolution
 	//
 	
-	Method(_,m,_,_,_,_) : defines Method m
+	Method(_,m,_,_,_,_) : defines Method m scopes Var scopes Param
 	
 	Call(_,m,_) : refers to Method m
-	
-	Program(_,_) : scopes Method
 	
 	//
 	// Parameter name resolution
@@ -38,24 +36,17 @@ binding rules
 	
 	Param(t,p) : defines Param p of type t
 	
-	Method(_,_,_,_,_,_) : scopes Class
-	
 	//
 	// Field name resolution
 	//
 	
 	Field(t,f) : defines Field f of type t
 	
-	Class(_,_,_,_) : scopes Field
-	
 	//
 	// Variable name resolution
 	//
 	
 	Var(t,v) : defines Var v of type t
-	
-	Method(_,_,_,_,_,_) : scopes Var
-	
 	
 	//
 	// Variable reference

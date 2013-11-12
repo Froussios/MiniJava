@@ -1,6 +1,6 @@
 module MiniJava.main
 
-imports MiniJava-Builders MiniJava-Refactorings MiniJava-Colorer MiniJava-Completions MiniJava-Folding MiniJava-References MiniJava-Syntax
+imports MiniJava-Menus MiniJava-Refactorings MiniJava-Colorer MiniJava-Completions MiniJava-Folding MiniJava-References MiniJava-Syntax
 
 language General properties
                   
@@ -14,3 +14,8 @@ language General properties
   extensions    : mjv
   table         : assignment1/MiniJava.tbl
   start symbols : Start
+  
+  provider      : include/minijava.ctree                                                                
+  provider      : include/minijava-java.jar                                                             
+  observer      : editor-analyze (multifile)                                                 
+                                                                                                   
