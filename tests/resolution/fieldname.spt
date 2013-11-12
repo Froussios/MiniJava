@@ -1,0 +1,249 @@
+module resolution
+
+language MiniJava
+start symbol Start
+
+
+
+//
+// Field name resolution
+//
+
+
+test simple field resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	class Filler { int var; }
+	
+	class C {
+		int [[var]];
+		int alsovar;
+		
+		public int getter() {
+			return [[var]];
+		}
+	}
+]] resolve #2 to #1
+
+
+test field in nested statements resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		int [[field]];
+		
+		public int method() {
+			int var;
+			var = 2;
+			while (var < 10) {
+				var = var + 1;
+				[[field]] = var;
+			}
+			return field;
+		}
+	}
+]] resolve #2 to #1
+
+
+
+//
+// Duplicates
+//
+
+
+test duplicate field definiton [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		int myfield;
+		boolean [[myfield]];
+		
+		public int method() { return 1; }
+	}
+]] 1 error
+
+
+test duplicate field definiton [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		int myfield;
+		int [[myfield]];
+		
+		public int method() { return 1; }
+	}
+]] 1 error
+
+
+
+
+//
+// Missing definitions
+//
+
+
+test missing field definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		int myfield;
+		
+		public int method() {
+			return [[missingField]];
+		}
+	}
+]] 1 error
+
+
+
+//
+// Borrowed fields
+//
+
+tes borrowed field [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class OtherClass {
+		int borrowedField;
+	}
+	
+	class C {
+		public int method() {
+			[[borrowedField]] = 1;
+			return 1;
+		}
+	}
+]] 1 error
+
+
+
+//
+// Warnings for unused definitions
+//
+
+
+test unused field warning [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		int myfield;
+		int [[unusedfield]];
+		
+		public int method() {
+			return myfield;
+		}
+	}
+]] 1 warning
+
+
+
+//
+// Fields in inheritance
+//
+
+
+test hiding field [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Base {
+		int myfield;
+	}
+	
+	class C extends Base {
+		int [[myfield]];
+	}
+]] 1 error
+
+
+test inherited field resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Base {
+		int [[myfield]];
+	}
+	
+	class C extends Base {
+		public int method() {
+			return [[myfield]] + 1;
+		}
+	}
+]] resolve #2 to #1
+
+
+test backward inherited field resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C extends Base {
+		public int method() {
+			return [[myfield]] + 1;
+		}
+	}
+	
+	class Base {
+		int [[myfield]];
+	}
+]] resolve #1 to #2
+
+
+test inherited field from super-super-class resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C1 {
+		 int [[myfield]];
+	 }
+	class C2 extends C1 {
+		
+	}
+	class C3 extends C2 {
+		public int method() {
+			return [[myfield]];
+		}
+	}
+]] resolve #2 to #1
+
+
+
+

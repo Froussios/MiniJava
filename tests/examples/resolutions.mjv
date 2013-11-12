@@ -1,0 +1,32 @@
+class MainClass 
+{
+	public static void main ( String[] args ) 
+	{
+		System.out.println(0);
+	}
+}
+
+class Base {}
+
+class someclass {}
+class someclass {}
+
+class C extends Base {
+	int field;
+	someclass cc;
+	int var;
+	
+	public int method ( int var )
+	{
+		int var;
+		Base v;
+		MainClass m;
+		
+		v = new Base();
+		
+		
+		return 1;
+	}
+	
+	
+}

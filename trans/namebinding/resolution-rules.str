@@ -1,0 +1,445 @@
+module namebinding/resolution-rules
+
+imports
+  lib/runtime/nabl/-
+  lib/runtime/task/-
+  lib/runtime/properties/-
+  lib/runtime/types/-
+  lib/runtime/editor/-
+  assignment1/MiniJava
+
+
+signature
+  constructors
+    NablNsClass  : Namespace
+    NablNsParam  : Namespace
+    NablNsField  : Namespace
+    NablNsVar    : Namespace
+    NablNsMethod : Namespace
+
+
+rules
+
+  nabl-get-name :
+    Class(c, _, _, _) -> c
+
+  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
+    ?Class(c, _, _, _)
+    ; origin-track-forced(
+        Class(
+          nabl-def(
+            ?c-uri1__
+          , ?s-uri1__
+          | lang__
+          , partition__
+          , uniques__
+          , uri__
+          , uri__
+          , NablNsClass()
+          , Unique()
+          , Current()
+          , []
+          )
+        , id
+        , id
+        , id
+        )
+        ; match(child-uris__|c-uri1__)
+        ; match(sibl-uris__|s-uri1__)
+        ; match(implicits__|[])
+      |
+      )
+
+  nabl-get-name :
+    MainClass(m, _, _) -> m
+
+  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
+    ?MainClass(m, _, _)
+    ; origin-track-forced(
+        MainClass(
+          nabl-def(
+            ?c-uri1__
+          , ?s-uri1__
+          | lang__
+          , partition__
+          , uniques__
+          , uri__
+          , uri__
+          , NablNsClass()
+          , Unique()
+          , Current()
+          , []
+          )
+        , id
+        , id
+        )
+        ; match(child-uris__|c-uri1__)
+        ; match(sibl-uris__|s-uri1__)
+        ; match(implicits__|[])
+      |
+      )
+
+  nabl-prop-site(|lang__, partition__, uris__, states__, implicits__) =
+    ?MainClass(m, _, _)
+    ; origin-track-forced(
+        MainClass(
+          nabl-store-props(
+          | partition__
+          , [Prop(Type(), "mainClass", [])]
+          )
+        , id
+        , id
+        )
+      |
+      )
+
+  nabl-get-name :
+    ClassType(c) -> c
+
+  nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
+    ?ClassType(c)
+    ; origin-track-forced(
+        ClassType(
+          nabl-use(
+          | lang__
+          , partition__
+          , uniques__
+          , uris__
+          , [ UseCandidate(
+                NablNsClass()
+              , []
+              , Current()
+              , True()
+              , []
+              )
+            ]
+          )
+        )
+      |
+      )
+
+  nabl-get-name :
+    Parent(c) -> c
+
+  nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
+    ?Parent(c)
+    ; origin-track-forced(
+        Parent(
+          nabl-use(
+          | lang__
+          , partition__
+          , uniques__
+          , uris__
+          , [ UseCandidate(
+                NablNsClass()
+              , []
+              , Current()
+              , True()
+              , []
+              )
+            ]
+          )
+        )
+      |
+      )
+
+  nabl-get-name :
+    NewObject(c) -> c
+
+  nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
+    ?NewObject(c)
+    ; origin-track-forced(
+        NewObject(
+          nabl-use(
+          | lang__
+          , partition__
+          , uniques__
+          , uris__
+          , [ UseCandidate(
+                NablNsClass()
+              , []
+              , Current()
+              , True()
+              , []
+              )
+            ]
+          )
+        )
+      |
+      )
+
+  nabl-scoping-site =
+    ?Program(_, _)
+    ; origin-track-forced(
+        nabl-scope(|[NablNsClass()])
+      |
+      )
+
+  nabl-get-scope =
+    ?Program(_, _)
+    ; ![NablNsClass()]
+
+  nabl-get-name :
+    Method(_, m, _, _, _, _) -> m
+
+  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
+    ?Method(_, m, _, _, _, _)
+    ; origin-track-forced(
+        Method(
+          id
+        , nabl-def(
+            ?c-uri1__
+          , ?s-uri1__
+          | lang__
+          , partition__
+          , uniques__
+          , uri__
+          , uri__
+          , NablNsMethod()
+          , Unique()
+          , Current()
+          , []
+          )
+        , id
+        , id
+        , id
+        , id
+        )
+        ; match(child-uris__|c-uri1__)
+        ; match(sibl-uris__|s-uri1__)
+        ; match(implicits__|[])
+      |
+      )
+
+  nabl-get-name :
+    Call(_, m, _) -> m
+
+  nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
+    ?Call(_, m, _)
+    ; origin-track-forced(
+        Call(
+          id
+        , nabl-use(
+          | lang__
+          , partition__
+          , uniques__
+          , uris__
+          , [ UseCandidate(
+                NablNsMethod()
+              , []
+              , Current()
+              , True()
+              , []
+              )
+            ]
+          )
+        , id
+        )
+      |
+      )
+
+  nabl-scoping-site =
+    ?Program(_, _)
+    ; origin-track-forced(
+        nabl-scope(|[NablNsMethod()])
+      |
+      )
+
+  nabl-get-scope =
+    ?Program(_, _)
+    ; ![NablNsMethod()]
+
+  nabl-get-name :
+    Param(t, p) -> p
+
+  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
+    ?Param(t, p)
+    ; origin-track-forced(
+        Param(
+          id
+        , nabl-def(
+            ?c-uri1__
+          , ?s-uri1__
+          | lang__
+          , partition__
+          , uniques__
+          , uri__
+          , uri__
+          , NablNsParam()
+          , Unique()
+          , Current()
+          , []
+          )
+        )
+        ; match(child-uris__|c-uri1__)
+        ; match(sibl-uris__|s-uri1__)
+        ; match(implicits__|[])
+      |
+      )
+
+  nabl-prop-site(|lang__, partition__, uris__, states__, implicits__) =
+    ?Param(t, p)
+    ; origin-track-forced(
+        Param(
+          id
+        , nabl-store-props(
+          | partition__
+          , [Prop(Type(), t, [])]
+          )
+        )
+      |
+      )
+
+  nabl-scoping-site =
+    ?Method(_, _, _, _, _, _)
+    ; origin-track-forced(
+        nabl-scope(|[NablNsClass()])
+      |
+      )
+
+  nabl-get-scope =
+    ?Method(_, _, _, _, _, _)
+    ; ![NablNsClass()]
+
+  nabl-get-name :
+    Field(t, f) -> f
+
+  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
+    ?Field(t, f)
+    ; origin-track-forced(
+        Field(
+          id
+        , nabl-def(
+            ?c-uri1__
+          , ?s-uri1__
+          | lang__
+          , partition__
+          , uniques__
+          , uri__
+          , uri__
+          , NablNsField()
+          , Unique()
+          , Current()
+          , []
+          )
+        )
+        ; match(child-uris__|c-uri1__)
+        ; match(sibl-uris__|s-uri1__)
+        ; match(implicits__|[])
+      |
+      )
+
+  nabl-prop-site(|lang__, partition__, uris__, states__, implicits__) =
+    ?Field(t, f)
+    ; origin-track-forced(
+        Field(
+          id
+        , nabl-store-props(
+          | partition__
+          , [Prop(Type(), t, [])]
+          )
+        )
+      |
+      )
+
+  nabl-scoping-site =
+    ?Class(_, _, _, _)
+    ; origin-track-forced(
+        nabl-scope(|[NablNsField()])
+      |
+      )
+
+  nabl-get-scope =
+    ?Class(_, _, _, _)
+    ; ![NablNsField()]
+
+  nabl-get-name :
+    Var(t, v) -> v
+
+  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
+    ?Var(t, v)
+    ; origin-track-forced(
+        Var(
+          id
+        , nabl-def(
+            ?c-uri1__
+          , ?s-uri1__
+          | lang__
+          , partition__
+          , uniques__
+          , uri__
+          , uri__
+          , NablNsVar()
+          , Unique()
+          , Current()
+          , []
+          )
+        )
+        ; match(child-uris__|c-uri1__)
+        ; match(sibl-uris__|s-uri1__)
+        ; match(implicits__|[])
+      |
+      )
+
+  nabl-prop-site(|lang__, partition__, uris__, states__, implicits__) =
+    ?Var(t, v)
+    ; origin-track-forced(
+        Var(
+          id
+        , nabl-store-props(
+          | partition__
+          , [Prop(Type(), t, [])]
+          )
+        )
+      |
+      )
+
+  nabl-scoping-site =
+    ?Method(_, _, _, _, _, _)
+    ; origin-track-forced(
+        nabl-scope(|[NablNsVar()])
+      |
+      )
+
+  nabl-get-scope =
+    ?Method(_, _, _, _, _, _)
+    ; ![NablNsVar()]
+
+  nabl-get-name :
+    VarRef(v) -> v
+
+  nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
+    ?VarRef(v)
+    ; origin-track-forced(
+        VarRef(
+          nabl-use(
+          | lang__
+          , partition__
+          , uniques__
+          , uris__
+          , [ UseCandidate(
+                NablNsVar()
+              , []
+              , Current()
+              , True()
+              , []
+              )
+            , UseCandidate(
+                NablNsParam()
+              , []
+              , Current()
+              , True()
+              , []
+              )
+            , UseCandidate(
+                NablNsField()
+              , []
+              , Current()
+              , True()
+              , []
+              )
+            ]
+          )
+        )
+      |
+      )

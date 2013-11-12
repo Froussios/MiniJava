@@ -1,0 +1,64 @@
+module analysis/desugar
+
+imports
+
+  assignment1/MiniJava
+  
+  
+signature
+
+  sorts
+  
+  // ...
+  
+  constructors
+  
+  NOT 		: UnOp
+  LENGTH 	: UnOp
+  NEWARRAY 	: UnOp
+  
+  ADD : BinOp
+  SUB : BinOp
+  MUL : BinOp
+  AND : BinOp
+  LT  : BinOp
+  
+  UnExp 	: UnOp * Exp 			-> Exp
+  BinExp 	: BinOp * Exp * Exp 	-> Exp
+  
+rules
+  
+  // desugar: ... -> ...
+  desugar : Add(e1,e2) -> BinExp(ADD(), e1, e2)
+  desugar : Sub(e1,e2) -> BinExp(SUB(), e1, e2)
+  desugar : Mul(e1,e2) -> BinExp(MUL(), e1, e2)
+  desugar : And(e1,e2) -> BinExp(AND(), e1, e2)
+  desugar : Lt (e1,e2) -> BinExp(LT (), e1, e2)
+  
+  desugar : Not(e) -> UnExp(NOT(), e)
+  desugar : Length(e) -> UnExp(LENGTH(), e)
+  desugar : NewArray(e) -> UnExp(NEWARRAY(), e)
+  
+  
+  //
+  // Challenge: Octals to decimals
+  //
+  desugar : IntValue(octstr) -> IntValue(decstr)
+  where
+  	isoctal := <string-starts-with(|"0")> octstr;
+  	octchars := <explode-string> octstr;
+  	dec := <oct-chars-to-int> octchars;
+  	decstr := <int-to-string> dec
+  
+strategies
+  
+  // TODO: select strategy
+  
+  // select one of these
+  
+  // desugar-all = innermost(desugar)
+  // desugar-all = topdown(desugar)
+  // desugar-all = topdown(try(desugar))
+  // desugar-all = bottomup(desugar)
+   desugar-all = bottomup(try(desugar))
+  // desugar-all = alltd(desugar)

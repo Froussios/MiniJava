@@ -1,0 +1,420 @@
+Module(
+  "namebinding/definitions-constraints"
+, [ Imports(
+      [Import("assignment1/MiniJava"), ImportWildcard("runtime/nabl"), ImportWildcard("runtime/task"), ImportWildcard("runtime/types")]
+    )
+  , Strategies(
+      [ SDefT(
+          "nabl-check-disable-duplicate"{3150945}
+        , []
+        , [ VarDec("uri"{3151209}, ConstType(SortNoArgs("ATerm")))
+          , VarDec("ns"{3151210}, ConstType(SortNoArgs("ATerm")))
+          ]
+        , Id()
+        )
+      , SDefT(
+          "nabl-check-disable-hiding"{3150946}
+        , []
+        , [ VarDec("uri"{3151211}, ConstType(SortNoArgs("ATerm")))
+          , VarDec("ns"{3151212}, ConstType(SortNoArgs("ATerm")))
+          ]
+        , Id()
+        )
+      , SDefT("nabl-check-disable-unresolved"{3150944}, [], [], Id())
+      ]
+    )
+  , Rules(
+      [ SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151213}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(Op("ClassType"{3150796}, [Var("c"{3151214})]))
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    BA(
+                      CallT(
+                        SVar("has-annotation"{3151047})
+                      , [Match(NoAnnoList(Op("Use"{3150920}, [Var("task"{3151215})])))]
+                      , []
+                      )
+                    , Var("c"{3151214})
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151216})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "\t\t\t          "
+                          , [QStr("The definition for class "), StringEscape1("\t\t\t                                   ", Var("c"{3151214})), QStr(" is not found")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-error-on-failure"{3151170})
+                        , []
+                        , [Var("ctx"{3151213}), Var("task"{3151215}), Var("msg"{3151216})]
+                        )
+                      , Var("c"{3151214})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151217}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(Op("Parent"{3150804}, [Var("c"{3151218})]))
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    BA(
+                      CallT(
+                        SVar("has-annotation"{3151047})
+                      , [Match(NoAnnoList(Op("Use"{3150920}, [Var("task"{3151219})])))]
+                      , []
+                      )
+                    , Var("c"{3151218})
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151220})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "\t\t              "
+                          , [QStr("The definition for the parent class "), StringEscape1("\t\t                                                  ", Var("c"{3151218})), QStr(" is not found")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-error-on-failure"{3151170})
+                        , []
+                        , [Var("ctx"{3151217}), Var("task"{3151219}), Var("msg"{3151220})]
+                        )
+                      , Var("c"{3151218})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151221}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(Op("Call"{3150818}, [Wld(), Var("m"{3151222}), Wld()]))
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    BA(
+                      CallT(
+                        SVar("has-annotation"{3151047})
+                      , [Match(NoAnnoList(Op("Use"{3150920}, [Var("task"{3151223})])))]
+                      , []
+                      )
+                    , Var("m"{3151222})
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151224})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "\t\t              "
+                          , [QStr("Method "), StringEscape1("\t\t                     ", Var("m"{3151222})), QStr(" is not definined")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-error-on-failure"{3151170})
+                        , []
+                        , [Var("ctx"{3151221}), Var("task"{3151223}), Var("msg"{3151224})]
+                        )
+                      , Var("m"{3151222})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151225}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(Op("VarRef"{3150813}, [Var("v"{3151226})]))
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    BA(
+                      CallT(
+                        SVar("has-annotation"{3151047})
+                      , [Match(NoAnnoList(Op("Use"{3150920}, [Var("task"{3151227})])))]
+                      , []
+                      )
+                    , Var("v"{3151226})
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151228})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "\t\t              "
+                          , [QStr("Variable "), StringEscape1("\t\t                       ", Var("v"{3151226})), QStr(" is undefined")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-error-on-failure"{3151170})
+                        , []
+                        , [Var("ctx"{3151225}), Var("task"{3151227}), Var("msg"{3151228})]
+                        )
+                      , Var("v"{3151226})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151229}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(
+                Op("Class"{3150806}, [Var("c"{3151230}), Wld(), Wld(), Wld()])
+              )
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    Assign(
+                      Var("task"{3151231})
+                    , App(
+                        CallT(SVar("nabl-lookup-local"{3150902}), [], [Var("ctx"{3151229})])
+                      , Var("c"{3151230})
+                      )
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151232})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "    \t\t         "
+                          , [QStr("Class "), StringEscape1("    \t\t               ", Var("c"{3151230})), QStr(" is already defined somewhere else")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-error-on-multiple"{3151178})
+                        , []
+                        , [Var("ctx"{3151229}), Var("task"{3151231}), Var("msg"{3151232})]
+                        )
+                      , Var("c"{3151230})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151233}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(Op("Param"{3150800}, [Wld(), Var("p"{3151234})]))
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    Assign(
+                      Var("task"{3151235})
+                    , App(
+                        CallT(SVar("nabl-lookup-local"{3150902}), [], [Var("ctx"{3151233})])
+                      , Var("p"{3151234})
+                      )
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151236})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "    \t\t         "
+                          , [QStr("A parameter with name "), StringEscape1("    \t\t                               ", Var("p"{3151234})), QStr(" is already defined")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-error-on-multiple"{3151178})
+                        , []
+                        , [Var("ctx"{3151233}), Var("task"{3151235}), Var("msg"{3151236})]
+                        )
+                      , Var("p"{3151234})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151237}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(Op("Var"{3150801}, [Wld(), Var("p"{3151238})]))
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    Assign(
+                      Var("task"{3151239})
+                    , App(
+                        CallT(SVar("nabl-lookup-local"{3150902}), [], [Var("ctx"{3151237})])
+                      , Var("p"{3151238})
+                      )
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151240})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "    \t\t         "
+                          , [QStr("A variable with name "), StringEscape1("    \t\t                              ", Var("p"{3151238})), QStr(" is already defined")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-error-on-multiple"{3151178})
+                        , []
+                        , [Var("ctx"{3151237}), Var("task"{3151239}), Var("msg"{3151240})]
+                        )
+                      , Var("p"{3151238})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151241}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(Op("Field"{3150803}, [Wld(), Var("p"{3151242})]))
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    Assign(
+                      Var("task"{3151243})
+                    , App(
+                        CallT(SVar("nabl-lookup-local"{3150902}), [], [Var("ctx"{3151241})])
+                      , Var("p"{3151242})
+                      )
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151244})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "    \t\t         "
+                          , [QStr("A variable with name "), StringEscape1("    \t\t                              ", Var("p"{3151242})), QStr(" is already defined")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-error-on-multiple"{3151178})
+                        , []
+                        , [Var("ctx"{3151241}), Var("task"{3151243}), Var("msg"{3151244})]
+                        )
+                      , Var("p"{3151242})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "nabl-constraint"{3150837}
+        , []
+        , [VarDec("ctx"{3151245}, ConstType(SortNoArgs("ATerm")))]
+        , SRule(
+            Rule(
+              NoAnnoList(Op("Var"{3150801}, [Wld(), Var("v"{3151246})]))
+            , RootApp(Fail())
+            , [ WhereClause(
+                  Seq(
+                    Assign(
+                      Var("task"{3151247})
+                    , App(
+                        CallT(
+                          SVar("nabl-lookup-lexical"{3150906})
+                        , []
+                        , [ Var("ctx"{3151245})
+                          , NoAnnoList(Op("Class"{3150806}, [Wld(), Wld(), Wld(), Wld()]))
+                          ]
+                        )
+                      , Var("v"{3151246})
+                      )
+                    )
+                  , Seq(
+                      Assign(
+                        Var("msg"{3151248})
+                      , NoAnnoList(
+                          StringQuotation1(
+                            "    \t\t         "
+                          , [QStr("Variable "), StringEscape1("    \t\t                  ", Var("v"{3151246})), QStr(" hiddes a field")]
+                          )
+                        )
+                      )
+                    , BA(
+                        CallT(
+                          SVar("task-create-warning-on-multiple"{3151179})
+                        , []
+                        , [Var("ctx"{3151245}), Var("task"{3151247}), Var("msg"{3151248})]
+                        )
+                      , Var("v"{3151246})
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      ]
+    )
+  ]
+)

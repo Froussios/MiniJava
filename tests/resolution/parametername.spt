@@ -1,0 +1,225 @@
+module resolution
+
+language MiniJava
+start symbol Start
+
+
+//
+// Parameter name resolution
+//
+
+
+test simple parameter resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	class Filler { int var; }
+	
+	class C {
+		int var;
+		int alsovar;
+		
+		public int getter(int [[param1]]) {
+			return [[param1]];
+		}
+	}
+]] resolve #2 to #1
+
+
+test simple 2nd parameter resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	class Filler { int var; }
+	
+	class C {
+		int var;
+		int alsovar;
+		
+		public boolean getter(int param1, boolean [[param2]]) {
+			boolean var1;
+			return [[param2]];
+		}
+	}
+]] resolve #2 to #1
+
+
+
+//
+// Duplicate definitions
+//
+
+
+test duplicate parameter definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method(int param, int [[param]]) {
+			return 1;
+		}
+	}
+]] 1 error
+
+
+test duplicate parameter definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method(boolean param, int [[param]]) {
+			return 1;
+		}
+	}
+]] 1 error
+
+
+test duplicate parameter defintion [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	class Filler {}
+	
+	class C {
+		public int method(int param, Filler [[param]]) {
+			return 1;
+		}
+	}
+]] 1 error
+
+
+
+//
+// Missing definitions
+//
+
+
+test missing parameter definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method(int param) {
+			return [[missingparam]] + 1;
+		}
+	}
+]] 1 error
+
+
+
+//
+// Borrowed parameters
+//
+
+test borrowed parameter from method within class [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int othermethod(int borrow) {
+			return borrow;
+		}
+		
+		public int method() {
+			return [[borrow]];
+		}
+	}
+]] 1 error
+
+
+test borrowed parameter from method in other class [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class otherClass {
+		public int method(int borrow) {
+			return borrow;
+		}
+	}
+	
+	class C {
+		public int method() {
+			return [[borrow]];
+		}
+	}
+]] 1 error
+
+
+//
+// Unused definitions
+//
+
+
+test unused parameter defintion warning [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method(int [[unusedparam]]) {
+			return 1;
+		}
+	}
+]] 1 warning
+
+
+test unused parameter defintion warning [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method(int param1, int [[uparam]], int param2) {
+			return param1 + param2;
+		}
+	}
+]] 1 warning
+
+
+
+//
+// Hiding
+//
+
+
+test parameter hiding field [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		int myfield;
+		public int method(int [[myfield]]) {
+			return myfield;
+		}
+	}
+]] 1 warning
+
+

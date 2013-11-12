@@ -1,0 +1,929 @@
+[ ( 464
+  , Message(
+      Result(463)
+    , Success()
+    , Warning(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 16, 5, 212, 214)
+      , "var"{ Def(
+                 URI(
+                   Language("MiniJava")
+                 , [ ID(NablNsField(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+                   , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                   , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                   , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                   , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+                   ]
+                 )
+               )
+             }
+      , "Variable var hiddes this field"
+      )
+    )
+  , [463]
+  , []
+  , Warning(
+      ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 16, 5, 212, 214)
+    , "var"{ Def(
+               URI(
+                 Language("MiniJava")
+               , [ ID(NablNsField(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+                 , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                 , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                 , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                 , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+                 ]
+               )
+             )
+           }
+    , "Variable var hiddes this field"
+    )
+  , -1
+  , 0
+  )
+, ( 463
+  , Choice(
+      [ Result(459)
+      , Result(460)
+      , Result(461)
+      , Result(462)
+      , Result(436)
+      ]
+    )
+  , [436, 462, 461, 460, 459]
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 462
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")])
+    , NablNsVar()
+    , "var"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 461
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")])
+    , NablNsVar()
+    , "var"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 460
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsVar()
+    , "var"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 459
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsVar()
+    , "var"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 458
+  , Message(
+      Result(457)
+    , Success()
+    , Warning(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 15, 11, 203, 204)
+      , "cc"{ Def(
+                URI(
+                  Language("MiniJava")
+                , [ ID(NablNsField(), "cc", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+                  , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                  , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                  , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                  , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+                  ]
+                )
+              )
+            }
+      , "Variable cc hiddes this field"
+      )
+    )
+  , [457]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 457
+  , Choice(
+      [ Result(452)
+      , Result(453)
+      , Result(454)
+      , Result(455)
+      , Result(456)
+      ]
+    )
+  , [456, 455, 454, 453, 452]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 456
+  , ResolveDefs(URI(Language("MiniJava"), []), NablNsVar(), "cc", [])
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 455
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")])
+    , NablNsVar()
+    , "cc"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 454
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")])
+    , NablNsVar()
+    , "cc"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 453
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsVar()
+    , "cc"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 452
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsVar()
+    , "cc"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 451
+  , Message(
+      Result(450)
+    , Success()
+    , Warning(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 14, 5, 185, 189)
+      , "field"{ Def(
+                   URI(
+                     Language("MiniJava")
+                   , [ ID(NablNsField(), "field", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+                     , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                     , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                     , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                     , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+                     ]
+                   )
+                 )
+               }
+      , "Variable field hiddes this field"
+      )
+    )
+  , [450]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 450
+  , Choice(
+      [ Result(445)
+      , Result(446)
+      , Result(447)
+      , Result(448)
+      , Result(449)
+      ]
+    )
+  , [449, 448, 447, 446, 445]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 449
+  , ResolveDefs(URI(Language("MiniJava"), []), NablNsVar(), "field", [])
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 448
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")])
+    , NablNsVar()
+    , "field"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 447
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")])
+    , NablNsVar()
+    , "field"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 446
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsVar()
+    , "field"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 445
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsVar()
+    , "field"
+    , []
+    )
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 444
+  , Message(
+      Result(443)
+    , Success()
+    , Warning(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 20, 6, 259, 261)
+      , "var"{ Def(
+                 URI(
+                   Language("MiniJava")
+                 , [ID(NablNsVar(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+                 )
+               )
+             }
+      , "Variable var hiddes a field"
+      )
+    )
+  , [443]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 443
+  , Choice([Result(441)])
+  , [441]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 441
+  , ResolveDefs(URI(Language("MiniJava"), []), NablNsField(), "var", [])
+  , []
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 437
+  , Message(
+      Result(436)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 20, 6, 259, 261)
+      , "var"{ Def(
+                 URI(
+                   Language("MiniJava")
+                 , [ID(NablNsVar(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+                 )
+               )
+             }
+      , "A variable with name var is already defined"
+      )
+    )
+  , [436]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 436
+  , ResolveDefs(URI(Language("MiniJava"), []), NablNsVar(), "var", [])
+  , []
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 415
+  , Message(
+      Result(268)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 18, 25, 244, 246)
+      , "var"{ Def(
+                 URI(
+                   Language("MiniJava")
+                 , [ID(NablNsParam(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+                 )
+               )
+             }
+      , "A parameter with name var is already defined"
+      )
+    )
+  , [268]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 414
+  , Message(
+      Result(413)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 16, 5, 212, 214)
+      , "var"{ Def(
+                 URI(
+                   Language("MiniJava")
+                 , [ ID(NablNsField(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+                   , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                   , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                   , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                   , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+                   ]
+                 )
+               )
+             }
+      , "A variable with name var is already defined"
+      )
+    )
+  , [413]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 413
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsField()
+    , "var"
+    , []
+    )
+  , []
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 223
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")])
+    , NablNsClass()
+    , "someclass"
+    , []
+    )
+  , []
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, (196, Id(Int()), [], [Int()], None(), -1, 0)
+, ( 220
+  , Choice([Result(219)])
+  , [219]
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 380
+  , Message(
+      Result(223)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 10, 6, 124, 132)
+      , "someclass"{ Def(
+                       URI(
+                         Language("MiniJava")
+                       , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+                       )
+                     )
+                   }
+      , "Class someclass is already defined somewhere else"
+      )
+    )
+  , [223]
+  , []
+  , Error(
+      ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 10, 6, 124, 132)
+    , "someclass"{ ImploderAttachment("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 10, 6, 124, 132, "")
+                 , ImploderAttachment("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 10, 6, 124, 132, "")
+                 , Def(
+                     URI(
+                       Language("MiniJava")
+                     , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+                     )
+                   )
+                 }
+    , "Class someclass is already defined somewhere else"
+    )
+  , -1
+  , 0
+  )
+, ( 364
+  , Message(
+      Result(363)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 14, 5, 185, 189)
+      , "field"{ Def(
+                   URI(
+                     Language("MiniJava")
+                   , [ ID(NablNsField(), "field", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+                     , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                     , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                     , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                     , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+                     ]
+                   )
+                 )
+               }
+      , "A variable with name field is already defined"
+      )
+    )
+  , [363]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 268
+  , ResolveDefs(URI(Language("MiniJava"), []), NablNsParam(), "var", [])
+  , []
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 173
+  , Choice([Result(172)])
+  , [172]
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "Base", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 381
+  , Message(
+      Result(223)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 11, 6, 143, 151)
+      , "someclass"{ Def(
+                       URI(
+                         Language("MiniJava")
+                       , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+                       )
+                     )
+                   }
+      , "Class someclass is already defined somewhere else"
+      )
+    )
+  , [223]
+  , []
+  , Error(
+      ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 11, 6, 143, 151)
+    , "someclass"{ ImploderAttachment("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 11, 6, 143, 151, "")
+                 , ImploderAttachment("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 11, 6, 143, 151, "")
+                 , Def(
+                     URI(
+                       Language("MiniJava")
+                     , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+                     )
+                   )
+                 }
+    , "Class someclass is already defined somewhere else"
+    )
+  , -1
+  , 0
+  )
+, ( 112
+  , PropsLookup(
+      Import(NablNsClass())
+    , Def(URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]))
+    )
+  , []
+  , []
+  , None()
+  , -1
+  , 0
+  )
+, ( 362
+  , Message(
+      Result(173)
+    , Failure()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 13, 16, 173, 176)
+      , "Base"{Use(Result(173))}
+      , "The definition for the parent class Base is not found"
+      )
+    )
+  , [173]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 200
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")])
+    , NablNsClass()
+    , "Base"
+    , []
+    )
+  , []
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "Base", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 113
+  , Combine(
+      [ [URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")])]
+      , Result(112)
+      , [URI(Language("MiniJava"), [])]
+      , Result(2)
+      ]
+    )
+  , [112, 2]
+  , [ URI(Language("MiniJava"), [])
+    , URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")])
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 379
+  , Message(
+      Result(200)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 8, 6, 109, 112)
+      , "Base"{ Def(
+                  URI(
+                    Language("MiniJava")
+                  , [ID(NablNsClass(), "Base", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+                  )
+                )
+              }
+      , "Class Base is already defined somewhere else"
+      )
+    )
+  , [200]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 363
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsField()
+    , "field"
+    , []
+    )
+  , []
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "field", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 172
+  , ResolveDefs(Result(113), NablNsClass(), "Base", [])
+  , [113]
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "Base", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 366
+  , ResolveDefs(
+      URI(
+        Language("MiniJava")
+      , [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")]
+      )
+    , NablNsField()
+    , "cc"
+    , []
+    )
+  , []
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "cc", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 367
+  , Message(
+      Result(366)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 15, 11, 203, 204)
+      , "cc"{ Def(
+                URI(
+                  Language("MiniJava")
+                , [ ID(NablNsField(), "cc", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+                  , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                  , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                  , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+                  , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+                  ]
+                )
+              )
+            }
+      , "A variable with name cc is already defined"
+      )
+    )
+  , [366]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 2
+  , PropsLookup(Import(NablNsClass()), Def(URI(Language("MiniJava"), [])))
+  , []
+  , []
+  , None()
+  , -1
+  , 0
+  )
+, ( 228
+  , ResolveDefs(
+      URI(Language("MiniJava"), [Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")])
+    , NablNsClass()
+    , "C"
+    , []
+    )
+  , []
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "C", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 382
+  , Message(
+      Result(228)
+    , Multiple()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 13, 6, 163, 163)
+      , "C"{ Def(
+               URI(
+                 Language("MiniJava")
+               , [ID(NablNsClass(), "C", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+               )
+             )
+           }
+      , "Class C is already defined somewhere else"
+      )
+    )
+  , [228]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 219
+  , ResolveDefs(Result(113), NablNsClass(), "someclass", [])
+  , [113]
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    ]
+  , None()
+  , -1
+  , 0
+  )
+, ( 365
+  , Message(
+      Result(220)
+    , Failure()
+    , Error(
+        ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", 15, 1, 193, 201)
+      , "someclass"{Use(Result(220))}
+      , "The definition for class someclass is not found"
+      )
+    )
+  , [220]
+  , Fail()
+  , None()
+  , -1
+  , 0
+  )
+, ( 222
+  , Id(ClassType("someclass"{Use(Result(220))}))
+  , []
+  , [ClassType("someclass"{Use(Result(220))})]
+  , None()
+  , -1
+  , 0
+  )
+]

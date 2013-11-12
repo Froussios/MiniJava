@@ -1,0 +1,57 @@
+module MiniJava
+
+signature
+  constructors
+    MainClass   : ID * ID * Statement -> MainClass
+    Program     : MainClass * List(ClassDecl) -> Program
+                : Program -> Start
+    ClassType   : ID -> Type
+    IntArray    : Type
+    Bool        : Type
+    Int         : Type
+    Param       : Type * ID -> ParamDecl
+    Var         : Type * ID -> VarDecl
+    Method      : Type * ID * List(ParamDecl) * List(VarDecl) * List(Statement) * Exp -> MethodDecl
+    Field       : Type * ID -> FieldDecl
+    Parent      : ID -> ParentDecl
+    None        : ParentDecl
+    Class       : ID * ParentDecl * List(FieldDecl) * List(MethodDecl) -> ClassDecl
+    Print       : Exp -> Statement
+    While       : Exp * Statement -> Statement
+    If          : Exp * Statement * Statement -> Statement
+    ArrayAssign : VarRef * Exp * Exp -> Statement
+    Assign      : VarRef * Exp -> Statement
+    Block       : List(Statement) -> Statement
+                : Exp -> IndexExp
+    VarRef      : ID -> VarRef
+    NewObject   : ID -> Exp
+    Length      : Exp -> Exp
+    Subscript   : Exp * IndexExp -> Exp
+    NewArray    : Exp -> Exp
+    Call        : Exp * ID * List(Exp) -> Exp
+    And         : Exp * Exp -> Exp
+    Lt          : Exp * Exp -> Exp
+    Mul         : Exp * Exp -> Exp
+    Sub         : Exp * Exp -> Exp
+    Add         : Exp * Exp -> Exp
+    Not         : Exp -> Exp
+    IntValue    : INT -> Exp
+                : VarRef -> Exp
+    This        : Exp
+    False       : Exp
+    True        : Exp
+                : String -> ID
+                : String -> INT
+
+
+signature
+  constructors
+    Some : a -> Option(a)
+    None : Option(a)
+
+
+signature
+  constructors
+    Cons : a * List(a) -> List(a)
+    Nil  : List(a)
+    Conc : List(a) * List(a) -> List(a)

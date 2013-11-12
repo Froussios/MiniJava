@@ -1,0 +1,166 @@
+module namebinding/definitions-constraints
+
+
+imports
+
+  assignment1/MiniJava
+  runtime/nabl/-
+  runtime/task/-
+  runtime/types/-
+  namebinding/resolution-rules
+  
+	
+strategies
+
+  nabl-check-disable-duplicate(|uri, ns) = id
+  nabl-check-disable-hiding(|uri, ns) = id
+  nabl-check-disable-unresolved = id
+	
+rules
+
+	//
+	// Errors for undefined references
+	//
+	
+	nabl-constraint(|ctx):
+		ClassType(c) -> <fail>
+		where
+			<has-annotation(?Use(task))> c ;
+			msg  := $[The definition for class [c] is not found] ;
+			<task-create-error-on-failure(|ctx, task, msg)> c
+      
+	nabl-constraint(|ctx):
+	    Parent(c) -> <fail>
+	    where
+		    <has-annotation(?Use(task))> c ;
+		    msg  := $[The definition for the parent class [c] is not found] ;
+		    <task-create-error-on-failure(|ctx, task, msg)> c
+	
+	nabl-constraint(|ctx):
+	    NewObject(c) -> <fail>
+	    where
+		    <has-annotation(?Use(task))> c ;
+		    msg  := $[The definition for class [c] is not found] ;
+		    <task-create-error-on-failure(|ctx, task, msg)> c
+	
+	nabl-constraint(|ctx):
+		Call(_,m,_) -> <fail>
+		where
+			<has-annotation(?Use(task))> m ;
+		    msg  := $[Method [m] is not definined] ;
+		    <task-create-error-on-failure(|ctx, task, msg)> m
+	
+	nabl-constraint(|ctx):
+		VarRef(v) -> <fail>
+		where
+			<has-annotation(?Use(task))> v ;
+		    msg  := $[Variable [v] is undefined] ;
+		    <task-create-error-on-failure(|ctx, task, msg)> v
+		    
+    
+    //
+    // Rules for duplicate definitions
+    //
+    
+    nabl-constraint(|ctx):
+    	Class(c,_,_,_) -> <fail>
+    	where
+    		task := <nabl-lookup-local(|ctx)> c ;
+    		msg := $[Class [c] is already defined somewhere else] ;
+    		<task-create-error-on-multiple(|ctx, task, msg)> c
+    
+    nabl-constraint(|ctx):
+    	Param(_,p) -> <fail>
+    	where
+    		task := <nabl-lookup-local(|ctx)> p ;
+    		msg := $[A parameter with name [p] is already defined] ;
+    		<task-create-error-on-multiple(|ctx, task, msg)> p
+    
+    nabl-constraint(|ctx):
+    	Var(_,p) -> <fail>
+    	where
+    		task := <nabl-lookup-local(|ctx)> p ;
+    		msg := $[A variable with name [p] is already defined] ;
+    		<task-create-error-on-multiple(|ctx, task, msg)> p
+    		
+    nabl-constraint(|ctx):
+    	Field(_,p) -> <fail>
+    	where
+    		task := <nabl-lookup-local(|ctx)> p ;
+    		msg := $[A variable with name [p] is already defined] ;
+    		<task-create-error-on-multiple(|ctx, task, msg)> p
+    
+    
+    //
+    // Hidding
+    //
+    
+    nabl-constraint(|ctx):
+    	Var(_,v) -> <fail>
+    	where
+    		task := <nabl-lookup-lexical(|ctx, NablNsField())> v ; //TODO: this does not find fields
+    		msg := $[Variable [v] hiddes a field] ;
+    		<task-create-warning-on-success(|ctx, task, msg)> v
+    
+    nabl-constraint(|ctx):
+    	Field(_,v) -> <fail>
+    	where
+    		task := <nabl-lookup-lexical(|ctx, NablNsVar())> v ; //TODO: this warning appear on the wrong definition
+    		msg := $[Variable [v] hiddes this field] ;
+    		<task-create-warning-on-success(|ctx, task, msg)> v
+    
+    //Experimental
+    nabl-constraint(|ctx):
+    	Class(_,_,Fields,Methods) -> <fail>
+    	where
+    		fieldname := <all(try(tt))> Fields ;
+    		varname := <all(try(tt))> Methods
+    		
+    
+    tt:
+    	[] -> <fail>
+    tt:
+    	[_|l] -> <tt> l	
+    tt:
+    	[Field(_,f) |_] -> f
+    tt:
+    	[Var(_,f) | _] -> f
+    tt:
+    	[Method(_,_,_,v,_,_) | _] -> <tt> v
+    	
+    	
+    //TODO: field hiding other fields
+    
+    
+    //
+    // Main references
+    //
+    
+	nabl-constraint(|ctx):
+		ClassType(c) -> <fail>
+		where
+			lookup := <type-lookup(|ctx)> c ;
+			match  := <type-match(|ctx, "main")> lookup ; //TODO: where should I have declared a constructor?
+			msg    := "Illegal reference to main class" ;
+			<task-create-error-on-success(|ctx, match, msg)> c
+	
+	nabl-constraint(|ctx):
+		Parent(c) -> <fail>
+		where
+			lookup := <type-lookup(|ctx)> c ;
+			match  := <type-match(|ctx, "mainClass")> lookup ; //TODO: where should I have declared a constructor?
+			msg    := "Illegal reference to main class" ;
+			<task-create-error-on-success(|ctx, match, msg)> c
+	
+	nabl-constraint(|ctx):
+		NewObject(c) -> <fail>
+		where
+			lookup := <type-lookup(|ctx)> c ;
+			match  := <type-match(|ctx, "mainClass")> lookup ; //TODO: where should I have declared a constructor?
+			msg    := "Illegal instantiation of main class" ;
+			<task-create-error-on-success(|ctx, match, msg)> c
+    
+    
+	
+	
+			

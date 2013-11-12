@@ -1,0 +1,12 @@
+module editor/builders
+
+imports
+	analysis/desugar
+	
+rules
+  
+   editor-desugar:
+       (selected, position, ast, path, project-path) -> (filename, text)
+       where
+         filename := <guarantee-extension(|"desugared.aterm")> path ;
+         text     := <desugar> selected

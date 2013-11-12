@@ -1,0 +1,16 @@
+module MiniJava.main
+
+imports MiniJava-Builders MiniJava-Refactorings MiniJava-Colorer MiniJava-Completions MiniJava-Folding MiniJava-References MiniJava-Syntax
+
+language General properties
+                  
+  name          : MiniJava
+  id            : MiniJava
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated editor for the MiniJava language"
+  url           : http://strategoxt.org
+                  
+  extensions    : mjv
+  table         : assignment1/MiniJava.tbl
+  start symbols : Start

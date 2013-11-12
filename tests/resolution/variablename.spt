@@ -1,0 +1,295 @@
+module resolution
+
+language MiniJava
+start symbol Start
+
+
+//
+// Variable name resolution
+//
+
+test simple variable resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	class Filler { int var2; }
+	
+	class C {
+		int field;
+		
+		public int method() {
+			int var2;
+			return 1;
+		}
+		
+		public int getter(int param1) {
+			int var1; int [[var2]];	int var3;
+			var1 = 1; var2 = 2; var3 = 3;
+			
+			var1 = [[var2]] + var3;
+			return var2;
+		}
+	}
+]] resolve #2 to #1
+
+
+
+//
+// Hiding
+//
+
+
+test variable hiding field resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		int var2;
+		
+		public int getter(int param1) {
+			int var1; int [[var2]];	int var3;
+			var1 = 1; var2 = 2; var3 = 3;
+			
+			var1 = [[var2]] + var3;
+			return var2;
+		}
+	}
+]] resolve #2 to #1
+
+
+test variable hiding parameter resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {		
+		public int getter(int var2) {
+			int var1; int [[var2]];	int var3;
+			var1 = 1; var2 = 2; var3 = 3;
+			
+			var1 = [[var2]] + var3;
+			return var2;
+		}
+	}
+]] resolve #2 to #1
+
+
+test hiding variable [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		int field;
+		public int method() {
+			int [[field]];
+			return 1;
+		}
+	}
+]] 1 warning
+
+
+test hiding variable [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method(int param) {
+			int [[param]];
+			return 1;
+		}
+	}
+]] 1 warning
+
+
+test hiding variable [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Base {
+		int field;
+	}
+	
+	class C extends Base {
+		public int method() {
+			var [[field]];
+			return 1;
+		}
+	}
+]] 1 warning
+
+
+
+//
+// Duplicate definitions
+//
+
+
+test duplicate variable definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method() {
+			int var;
+			int [[var]];
+			return 1;
+		}
+	}
+]] 1 error
+
+
+test duplicate variable definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method() {
+			boolean var;
+			int [[var]];
+			return 1;
+		}
+	}
+]] 1 error
+
+
+test duplicate variable definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class C {
+		public int method() {
+			boolean var;
+			Filler [[var]];
+			return 1;
+		}
+	}
+]] 1 error
+
+
+
+//
+// Missing definitions
+//
+
+
+test missing variable definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method() {
+			int var;
+			return [[missingvar]];
+		}
+	}
+]] 1 error
+
+
+
+//
+// Borrowed definitions
+//
+
+
+test borrowed variable from method within class [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int othermethod() {
+			int borrow;
+			borrow = 1;
+			return borrow;
+		}
+		
+		public int method() {
+			return [[borrow]];
+		}
+	}
+]] 1 error
+
+
+test borrowed varialbe from method in other class [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class otherClass {
+		public int method() {
+			int borrow;
+			borrow = 1;
+			return borrow;
+		}
+	}
+	
+	class C {
+		public int method() {
+			return [[borrow]];
+		}
+	}
+]] 1 error
+
+
+
+//
+// Unused warning
+//
+
+
+test unused variable definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method() {
+			var [[unusedvar]];
+			return 1;
+		}
+	}
+]] 1 warning
+
+
+
+
+
+
+
+

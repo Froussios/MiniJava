@@ -1,0 +1,79 @@
+class MainClass 
+{
+	public static void main ( String[] args ) 
+	{
+		System.out.println(0);
+	}
+}
+
+class CC
+{  
+	// Insert field declarations here 
+	boolean thisisaboolean;
+	boolean mybooleanField;
+	 
+	// Insert method declarations here 
+	public int method1 ( int i1, int i2, boolean b ) 
+	{ 
+		boolean b;
+		boolean bb;
+		int rv;
+		int id;
+		CCC customvar; 
+		
+		if ( false )
+		{
+			b = false;
+			rv = 1;
+		}
+		else
+		{
+			rv = 2;
+		}
+		if ( true )
+			rv = 1;
+		else
+			rv = 2;
+		
+		while (true)
+		{
+			rv = 2;
+			rv = 1;
+		}
+		while (rv < 10)
+			rv = rv + 1;
+		
+		return rv;
+	}
+	
+	public int get ( ) 
+	{ 
+		id = new sadf();
+		return id;
+	}
+	public int set ( int in ) 
+	{ 
+		id = in;
+		return 1;
+	}
+	
+	public int desugarme()
+	{
+		int x; int y; int z;
+		int i; int j;
+		
+		x = x*y+1+z+010;
+		
+		return 0;
+	}
+	 
+}
+
+class CCC extends CC
+{  
+	int CCCfield1;
+	// Insert field declarations here 
+	 
+	// Insert method declarations here 
+	 
+}

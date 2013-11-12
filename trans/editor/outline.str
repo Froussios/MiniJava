@@ -1,0 +1,92 @@
+module editor/outline
+
+imports
+  assignment1/MiniJava
+  runtime/editor/outline-library
+  runtime/editor/origins
+  //editor/MiniJava-Outliner.generated
+  runtime/nabl/utils
+
+rules
+  
+  outline-expand-to-level = !3
+
+rules
+  
+  to-outline-label: 
+    Var(t, v) -> $[[v]: [t']] 
+    where 
+      t' := <pp> t
+  
+  to-outline-label:
+  	MainClass(m, a, s) -> "main"
+  
+  to-outline-label:
+  	Class(name, Parent(p), fields, methods) -> $[[name]: [p]]
+  to-outline-label:
+  	Class(name, None(), fields, methods) -> $[[name]]
+  
+  to-outline-label:
+  	Method(type, name, parameters, variables, statements, return) -> $[[t']: [name]([p'])]
+  	where
+  	  t' := <pp> type ;
+  	  p' := <parameter-list> parameters
+  
+  to-outline-label:
+  	Field(t, n) -> $[[n]: [t']]
+  	where
+  	  t' := <pp> t
+  	
+ 
+ 
+rules  
+  pp: Bool()       -> "boolean"
+  pp: ClassType(c) -> $[[c]]
+  pp: Int()        -> "int"
+  pp: IntArray()   -> "int[]"
+  
+  parameter-list : [Param(t,n) | l] -> $[[t'][l']]
+  where
+  	t' := <pp> t ;
+    l' := <parameter-list-more> l
+  parameter-list : [] -> ""
+  
+  parameter-list-more : [Param(t,n) | l] -> $[, [t'][l']]
+  where
+  	t' := <pp> t ;
+  	l' := <parameter-list-more> l
+  parameter-list-more : [] -> ""
+
+
+//
+// Challenge
+//
+
+rules
+	
+  to-outline-label:
+  	Program(m,c) -> full-path
+  	where
+      full-path := <origin-file> m
+  
+  outline = simple-label-outline2(to-outline-label)
+  
+  simple-label-outline2(s1) = collect-om(to-outline-node-ext(s1, fail), conc) 
+  
+  to-outline-node-ext(s1,s2):
+  	term -> <to-outline-node2(s1,s2)> term
+    
+  to-outline-node2(s1, s2):
+  	MainClass(m, a, s)-> Node(label, children)
+    where
+      label := m;
+      children := [Node("void main(String[])", [])]
+  
+  to-outline-node2(s1, s2):
+    term -> Node(label, children)
+    where
+      label := <to-outline-label> term;
+      children := <get-arguments; simple-label-outline2(s1)> term
+
+  
+strategies

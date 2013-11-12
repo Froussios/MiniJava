@@ -1,0 +1,498 @@
+module resolution
+
+language MiniJava
+start symbol Start
+
+
+
+//
+// Class name resolution
+//
+
+
+test forward class name resolution [[
+  class Main {
+    public static void main(String[] args) {
+      System.out.println(1);
+    }
+  }
+
+  class Foobar {
+    [[Foo]] x;
+  }
+
+  class [[Foo]] {}
+]] resolve #1 to #2
+
+
+test backward class name resolution [[
+  class Main {
+    public static void main(String[] args) {
+      System.out.println(1);
+    }
+  }
+
+  class [[Foo]] {}
+
+  class Foobar {
+    [[Foo]] x;
+  }
+]] resolve #2 to #1
+
+
+test parent class name resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class [[Base]] {}
+	class Child extends [[Base]] {}
+	class Filler {}
+]] resolve #2 to #1
+
+
+test backward parent class name resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Child extends [[Base]] {}
+	class [[Base]] {}
+	class Filler {}
+]] resolve #1 to #2
+
+
+test class name in variable declaration resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class [[T]] {}
+	
+	class C {
+		public int method()
+		{
+			[[T]] c;
+			return 1;
+		}
+	}
+	
+	class Filler {}
+]] resolve #2 to #1
+
+
+test backward class name in variable declaration resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method()
+		{
+			[[T]] c;
+			return 1;
+		}
+	}
+	
+	class [[T]] {}
+	class Filler {}
+]] resolve #1 to #2
+
+
+test class name recursive reference resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class [[C]]
+	{
+		[[C]] c;
+	}
+	
+	class Filler {}
+]] resolve #2 to #1
+
+
+test class name in parameter resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class [[T]] {}
+	
+	class C
+	{
+		public int method([[T]] inc) { return 1; }
+	}
+	
+	class Filler {}
+]] resolve #2 to #1
+
+
+test class name in parameter resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C
+	{
+		public int method([[T]] inc) { return 1; }
+	}
+	
+	class [[T]] {}
+	class Filler {}
+]] resolve #1 to #2
+
+
+test class name as return type resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class [[T]] {}
+	
+	class C	{
+		C rec;
+		public [[T]] method() { return rec; }
+	}
+	
+	class Filler {}
+]] resolve #2 to #1
+
+
+test backward class name as return type resolution [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C	{
+		C rec;
+		public [[T]] method() { return rec; }
+	}
+	
+	class [[T]] {}
+	class Filler {}
+]] resolve #2 to #1
+
+
+test class instantiation [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class [[Filler]] {}
+	
+	class C {
+		Filler myfield;
+		
+		public int init() {
+			myfield = new [[Filler]]();
+			return 1;
+		}
+	}
+]] resolve #2 to #1
+
+
+
+//
+// Missing definitions
+//
+
+
+test missing parent class definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class C extends [[Base]] {}
+]] 1 error
+
+
+test missing class definition in field declaration [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class C	{
+		[[MissingClass]] myfield;
+	}
+]] 1 error
+
+
+test missing class definition in variable declaration [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class C	{
+		public int method()	{
+			[[MissingClass]] myvar;
+			return 1;
+		}
+	}
+]] 1 error
+
+
+test missing class definition in parameter declaration [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class C {
+		public int method([[MissingClass]] param) {
+			return 1;
+		}
+	}
+]] 1 error
+
+
+test missing class definition in return type [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class C {
+		public [[MissingClass]] method() {
+			return new MissingClass();
+		}
+	}
+]] 1 error
+
+
+
+//
+// Duplicate definitions
+//
+
+
+test duplicate class definition [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class C {}
+	class C {}
+]] 2 errors
+
+
+
+//
+// Unused class definitions
+//
+
+
+test unused class [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class [[C]] {
+		Filler myfield;
+	}
+]] 1 warning
+
+
+test inherited class counts as used [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(new C());
+		}
+	}
+	class [[Base]] {}
+	
+	class C extends Base {
+	} 
+]] 0 warning
+
+
+
+//
+// Cyclic inheritance
+//
+
+
+test cyclic inheritance [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Base extends C{}
+	
+	class C extends Base {}
+]] 2 errors
+
+
+test inderect cyclic inheritance [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C1 extends C3 {}
+	class C2 extends C1 {}
+	class C3 extends C2 {}
+]] 3 errors
+
+
+test class inheriting itself [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class Filler {}
+	
+	class C extends C {}
+]] 1 error
+
+
+
+//
+// Main class instantiation/subclassing
+//
+
+
+test main class subclassing [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C extends [[main]] {}
+]] 1 error
+
+
+test main class field [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		[[main]] myfield;
+	}
+]] 1 error
+
+
+test main class variable [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method() {
+			[[main]] myvar;
+			return 1;
+		}
+	}
+]] 1 error
+
+
+test main class parameter [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public int method([[main]] param) {
+			return 1;
+		}
+	}
+]] 1 error
+
+
+test main class return value [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public [[main]] method() {
+			return new main();
+		}
+	}
+]] 1 error
+
+
+test main class instantiation [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(1);
+		}
+	}
+	
+	class C {
+		public main method() {
+			return new [[main]]();
+		}
+	}
+]] 1 error
+
+
+test main class instantiation in main  method [[
+	class main {
+		public static void main(String[] args) {
+			System.out.println(new [[main]]());
+		}
+	}
+]] 1 error

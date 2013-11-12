@@ -1,0 +1,794 @@
+[ ( ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv", [])
+  , [ Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CC", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CC", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CC", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CC", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CC", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "thisisaboolean", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsField(), "thisisaboolean", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "thisisaboolean", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "thisisaboolean", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsField(), "thisisaboolean", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "mybooleanField", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsField(), "mybooleanField", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "mybooleanField", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "mybooleanField", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsField(), "mybooleanField", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "i1", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsParam(), "i1", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "i1", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "i1", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsParam(), "i1", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "i2", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsParam(), "i2", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "i2", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "i2", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsParam(), "i2", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "b", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsParam(), "b", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "b", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "b", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsParam(), "b", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "b", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "b", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "b", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "b", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "b", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "bb", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "bb", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "bb", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "bb", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "bb", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "rv", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "rv", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "rv", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "rv", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "rv", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "id", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "id", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "id", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "id", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "id", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "customvar", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "customvar", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "customvar", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "customvar", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "customvar", NonUnique())])
+      )
+    , Use(Result(30))
+    , Use(Result(41))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(46))
+    , Use(Result(60))
+    , Use(Result(60))
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "in", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsParam(), "in", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "in", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "in", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsParam(), "in", NonUnique())])
+      )
+    , Use(Result(60))
+    , Use(Result(69))
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "x", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "x", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "x", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "x", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "x", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "y", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "y", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "y", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "y", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "y", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "z", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "z", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "z", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "z", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "z", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "i", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "i", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "i", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "i", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "i", NonUnique())])
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "j", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "j", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "j", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "j", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "j", NonUnique())])
+      )
+    , Use(Result(84))
+    , Use(Result(84))
+    , Use(Result(90))
+    , Use(Result(95))
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CCC", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CCC", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CCC", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CCC", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "CCC", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0")]
+        )
+      )
+    , Use(Result(103))
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "CCCfield1", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsField(), "CCCfield1", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "CCCfield1", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsField(), "CCCfield1", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/example.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsField(), "CCCfield1", NonUnique())])
+      )
+    ]
+  )
+, ( ("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv", [])
+  , [ Prop(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      , Type()
+      , Result(196)
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsVar(), "var", NonUnique())])
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsVar(), "var", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsVar(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    , Prop(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      , Type()
+      , Result(196)
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsParam(), "var", NonUnique())])
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsParam(), "var", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsParam(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsMethod(), "method", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      , URI(Language("MiniJava"), [ID(NablNsMethod(), "method", NonUnique())])
+      )
+    , Alias(
+        URI(Language("MiniJava"), [ID(NablNsMethod(), "method", NonUnique())])
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsMethod(), "method", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsMethod(), "method", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))]
+        )
+      )
+    , Prop(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , Type()
+      , Result(196)
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "var", NonUnique())
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "var", NonUnique())
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "var", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Prop(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "cc", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , Type()
+      , Result(222)
+      )
+    , Use(Result(220))
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "cc", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "cc", NonUnique())
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "cc", NonUnique())
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "cc", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "cc", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Prop(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "field", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , Type()
+      , Result(196)
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "field", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "field", NonUnique())
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "field", NonUnique())
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "field", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ ID(NablNsField(), "field", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0"))
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")
+          , Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")
+          ]
+        )
+      )
+    , Use(Result(173))
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "C", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "C", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "C", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "C", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "C", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/1")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "someclass", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , InverseAlias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "Base", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "Base", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Alias(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "Base", NonUnique()), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      , URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "Base", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    , Def(
+        URI(
+          Language("MiniJava")
+        , [ID(NablNsClass(), "Base", Unique("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")), Anonymous("C:/Users/Chris/workspace4.2/MiniJava/tests/examples/resolutions.mjv/0")]
+        )
+      )
+    ]
+  )
+]

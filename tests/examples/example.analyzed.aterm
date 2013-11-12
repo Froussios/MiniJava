@@ -1,0 +1,93 @@
+Program(
+  MainClass("MainClass", "args", Print(IntValue("0")))
+, [ Class(
+      "CC"
+    , None()
+    , [Field(Bool(), "thisisaboolean"), Field(Bool(), "mybooleanField")]
+    , [ Method(
+          Int()
+        , "method1"
+        , [Param(Int(), "i1"), Param(Int(), "i2"), Param(Bool(), "b")]
+        , [ Var(Bool(), "b")
+          , Var(Bool(), "bb")
+          , Var(Int(), "rv")
+          , Var(ClassType("CCC"), "customvar")
+          ]
+        , [ If(
+              False()
+            , Block([Assign(VarRef("rv"), IntValue("1"))])
+            , Block([Assign(VarRef("rv"), IntValue("2"))])
+            )
+          , If(
+              True()
+            , Assign(VarRef("rv"), IntValue("1"))
+            , Assign(VarRef("rv"), IntValue("2"))
+            )
+          , While(
+              True()
+            , Block(
+                [ Assign(VarRef("rv"), IntValue("2"))
+                , Assign(VarRef("rv"), IntValue("1"))
+                ]
+              )
+            )
+          , While(
+              BinExp(LT(), VarRef("rv"), IntValue("10"))
+            , Assign(
+                VarRef("rv")
+              , BinExp(ADD(), VarRef("rv"), IntValue("1"))
+              )
+            )
+          ]
+        , VarRef("rv")
+        )
+      , Method(
+          Int()
+        , "get"
+        , []
+        , []
+        , [Assign(VarRef("id"), NewObject("sadf"))]
+        , VarRef("id")
+        )
+      , Method(
+          Int()
+        , "set"
+        , [Param(Int(), "in")]
+        , []
+        , [Assign(VarRef("id"), VarRef("in"))]
+        , IntValue("1")
+        )
+      , Method(
+          Int()
+        , "desugarme"
+        , []
+        , [ Var(Int(), "x")
+          , Var(Int(), "y")
+          , Var(Int(), "z")
+          , Var(Int(), "i")
+          , Var(Int(), "j")
+          ]
+        , [ Assign(
+              VarRef("x")
+            , BinExp(
+                ADD()
+              , BinExp(
+                  ADD()
+                , BinExp(
+                    ADD()
+                  , BinExp(MUL(), VarRef("x"), VarRef("y"))
+                  , IntValue("1")
+                  )
+                , VarRef("z")
+                )
+              , IntValue("8")
+              )
+            )
+          ]
+        , IntValue("0")
+        )
+      ]
+    )
+  , Class("CCC", Parent("CC"), [], [])
+  ]
+)
