@@ -23,19 +23,17 @@ rules
   nabl-scoping-site =
     ?Program(_, _)
     ; origin-track-forced(
-        nabl-scope(
-        | [NablNsClass(), NablNsMethod()]
-        )
+        nabl-scope(|[NablNsClass()])
       |
       )
 
   nabl-get-scope =
     ?Program(_, _)
-    ; ![NablNsClass(), NablNsMethod()]
+    ; ![NablNsClass()]
 
   nabl-get-scope =
     ?Class(c, _, _, _)
-    ; ![NablNsField()]
+    ; ![NablNsField(), NablNsMethod()]
 
   nabl-get-name :
     Class(c, _, _, _) -> c
@@ -55,7 +53,7 @@ rules
           , NablNsClass()
           , Unique()
           , Current()
-          , [NablNsField()]
+          , [NablNsField(), NablNsMethod()]
           )
         , id
         , id
