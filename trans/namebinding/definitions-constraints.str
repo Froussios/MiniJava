@@ -8,6 +8,7 @@ imports
   runtime/task/-
   runtime/types/-
   namebinding/resolution-rules
+  namebinding/type-constructors
   
 	
 strategies
@@ -107,46 +108,20 @@ rules
     nabl-constraint(|ctx):
     	Var(_,v) -> <fail>
     	where
-    		task := <nabl-lookup-lexical(|ctx, NablNsField())> v; //TODO: this does not find fields
+    		task := <nabl-lookup-lexical(|ctx, NablNsField())> v;
     		msg := $[Variable [v] hiddes a field] ;
     		<task-create-warning-on-success(|ctx, task, msg)> v
-    
-    // TODO: Why does this find fields and not the above?
-   	// nabl-constraint(|ctx):
-    // 	Field(_,v) -> <fail>
-    // 	where
-    // 		task := <nabl-lookup-lexical(|ctx, NablNsField())> v;
-    // 		msg := $[Variable [v] hiddes a field] ;
-    // 		<task-create-warning-on-success(|ctx, task, msg)> v
+  
     
     nabl-constraint(|ctx):
     	Var(_,v) -> <fail>
     	where
     		task := <nabl-lookup-lexical(|ctx, NablNsParam())> v;
     		msg := $[Variable [v] hiddes a parameter] ;
-    		<task-create-warning-on-success(|ctx, task, msg)> v
-    
-    //Experimental
-    nabl-constraint(|ctx):
-    	Class(_,_,Fields,Methods) -> <fail>
-    	where
-    		fieldname := <all(try(tt))> Fields ;
-    		varname := <all(try(tt))> Methods
-    		
-    
-    tt:
-    	[] -> <fail>
-    tt:
-    	[_|l] -> <tt> l	
-    tt:
-    	[Field(_,f) |_] -> f
-    tt:
-    	[Var(_,f) | _] -> f
-    tt:
-    	[Method(_,_,_,v,_,_) | _] -> <tt> v
+    		<task-create-error-on-success(|ctx, task, msg)> v // TODO: is this a warning instead?
     	
     	
-    //TODO: field hiding other fields
+    //TODO: field hiding other fields?
     
     
     //
@@ -157,7 +132,7 @@ rules
 		ClassType(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, "MainClassType")> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, MAINCLASS())> lookup ; //TODO: where should I have declared a constructor?
 			msg    := "Illegal reference to main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
 	
@@ -165,7 +140,7 @@ rules
 		Parent(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, "MainClassType")> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, MAINCLASS())> lookup ; //TODO: where should I have declared a constructor?
 			msg    := "Illegal reference to main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
 	
@@ -173,7 +148,7 @@ rules
 		NewObject(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, "MainClassType")> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, MAINCLASS())> lookup ; //TODO: where should I have declared a constructor?
 			msg    := "Illegal instantiation of main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
     

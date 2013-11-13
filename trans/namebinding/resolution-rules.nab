@@ -2,6 +2,7 @@ module namebinding/resolution-rules
 
 imports
 	assignment1/MiniJava
+	namebinding/type-constructors
 
 namespaces
 	Class Param Field Var Method
@@ -16,7 +17,7 @@ binding rules
 	
 	
 	Class(c,_,_,_) : defines Class c scopes Field scopes Method
-	MainClass(m,_,_) : defines Class m of type "MainClassType"
+	MainClass(m,_,_) : defines Class m of type MAINCLASS()
 	
 	ClassType(c) : refers to Class c
 	Parent(c) : refers to Class c
