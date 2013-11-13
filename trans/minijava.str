@@ -17,6 +17,8 @@ imports
 	editor/outline
   editor/builders
   analysis/desugar
+  trans/namebinding/resolution-rules
+  trans/namebinding/definitions-constraints
   
 rules // Analysis
 	

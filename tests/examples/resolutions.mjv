@@ -13,12 +13,18 @@ class someclass {}
 
 class C extends Base {
 	int field;
+	int duplicateField;
+	int duplicateField;
 	someclass cc;
 	int var;
+	MissingClass errorField;
 	
-	public int method ( int var )
+	public int method ( int var, int duplicateParam, int duplicateParam )
 	{
 		int var;
+		int duplicateVar;
+		int duplicateVar;
+		
 		Base v;
 		MainClass m;
 		
@@ -27,6 +33,6 @@ class C extends Base {
 		
 		return 1;
 	}
-	
-	
 }
+
+class C2 extends MissingClass {}

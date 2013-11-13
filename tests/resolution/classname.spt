@@ -190,7 +190,7 @@ test backward class name as return type resolution [[
 	
 	class [[T]] {}
 	class Filler {}
-]] resolve #2 to #1
+]] resolve #1 to #2
 
 
 test class instantiation [[
@@ -293,7 +293,7 @@ test missing class definition in return type [[
 	
 	class C {
 		public [[MissingClass]] method() {
-			return new MissingClass();
+			return 0;
 		}
 	}
 ]] 1 error
