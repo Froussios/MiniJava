@@ -22,13 +22,15 @@ rules
 	// Errors for undefined references
 	//
 	
+	// Cannot resolve class in type
 	nabl-constraint(|ctx):
 		ClassType(c) -> <fail>
 		where
 			<has-annotation(?Use(task))> c ;
 			msg  := $[The definition for class [c] is not found] ;
 			<task-create-error-on-failure(|ctx, task, msg)> c
-      
+    
+    // Cannot resolve class parent  
 	nabl-constraint(|ctx):
 	    Parent(c) -> <fail>
 	    where
@@ -36,6 +38,7 @@ rules
 		    msg  := $[The definition for the parent class [c] is not found] ;
 		    <task-create-error-on-failure(|ctx, task, msg)> c
 	
+	// Cannot resolve class in class instatiation
 	nabl-constraint(|ctx):
 	    NewObject(c) -> <fail>
 	    where
@@ -43,6 +46,7 @@ rules
 		    msg  := $[The definition for class [c] is not found] ;
 		    <task-create-error-on-failure(|ctx, task, msg)> c
 	
+	// Cannot resolve method in method call
 	nabl-constraint(|ctx):
 		Call(_,m,_) -> <fail>
 		where
@@ -50,6 +54,7 @@ rules
 		    msg  := $[Method [m] is not definined] ;
 		    <task-create-error-on-failure(|ctx, task, msg)> m
 	
+	// Cannot resolve variable/field/parameter reference
 	nabl-constraint(|ctx):
 		VarRef(v) -> <fail>
 		where
@@ -62,6 +67,7 @@ rules
     // Rules for duplicate definitions
     //
     
+    // Duplicate class definition
     nabl-constraint(|ctx):
     	Class(c,_,_,_) -> <fail>
     	where
@@ -69,6 +75,7 @@ rules
     		msg := $[Class [c] is already defined somewhere else] ;
     		<task-create-error-on-multiple(|ctx, task, msg)> c
     
+    // Duplicate parameter definition
     nabl-constraint(|ctx):
     	Param(_,p) -> <fail>
     	where
@@ -76,6 +83,7 @@ rules
     		msg := $[A parameter with name [p] is already defined] ;
     		<task-create-error-on-multiple(|ctx, task, msg)> p
     
+    // Duplicate variable definition
     nabl-constraint(|ctx):
     	Var(_,p) -> <fail>
     	where
@@ -83,6 +91,7 @@ rules
     		msg := $[A variable with name [p] is already defined] ;
     		<task-create-error-on-multiple(|ctx, task, msg)> p
     		
+    // Duplicate field definition
     nabl-constraint(|ctx):
     	Field(_,p) -> <fail>
     	where
@@ -98,15 +107,23 @@ rules
     nabl-constraint(|ctx):
     	Var(_,v) -> <fail>
     	where
-    		task := <nabl-lookup-lexical(|ctx, NablNsField())> v ; //TODO: this does not find fields
+    		task := <nabl-lookup-lexical(|ctx, NablNsField())> v; //TODO: this does not find fields
     		msg := $[Variable [v] hiddes a field] ;
     		<task-create-warning-on-success(|ctx, task, msg)> v
     
+    // TODO: Why does this find fields and not the above?
+   	// nabl-constraint(|ctx):
+    // 	Field(_,v) -> <fail>
+    // 	where
+    // 		task := <nabl-lookup-lexical(|ctx, NablNsField())> v;
+    // 		msg := $[Variable [v] hiddes a field] ;
+    // 		<task-create-warning-on-success(|ctx, task, msg)> v
+    
     nabl-constraint(|ctx):
-    	Field(_,v) -> <fail>
+    	Var(_,v) -> <fail>
     	where
-    		task := <nabl-lookup-lexical(|ctx, NablNsVar())> v ; //TODO: this warning appear on the wrong definition
-    		msg := $[Variable [v] hiddes this field] ;
+    		task := <nabl-lookup-lexical(|ctx, NablNsParam())> v;
+    		msg := $[Variable [v] hiddes a parameter] ;
     		<task-create-warning-on-success(|ctx, task, msg)> v
     
     //Experimental
@@ -140,7 +157,7 @@ rules
 		ClassType(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, "main")> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, "MainClassType")> lookup ; //TODO: where should I have declared a constructor?
 			msg    := "Illegal reference to main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
 	
@@ -148,7 +165,7 @@ rules
 		Parent(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, "mainClass")> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, "MainClassType")> lookup ; //TODO: where should I have declared a constructor?
 			msg    := "Illegal reference to main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
 	
@@ -156,7 +173,7 @@ rules
 		NewObject(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, "mainClass")> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, "MainClassType")> lookup ; //TODO: where should I have declared a constructor?
 			msg    := "Illegal instantiation of main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
     

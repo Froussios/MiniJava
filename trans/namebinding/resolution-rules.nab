@@ -8,18 +8,19 @@ namespaces
 
 binding rules
 
+	Program(_,_) : scopes Class scopes Method
+
 	//
 	// Class name resolution
 	//
 	
+	
 	Class(c,_,_,_) : defines Class c scopes Field
-	MainClass(m,_,_) : defines Class m of type "mainClass"
+	MainClass(m,_,_) : defines Class m of type "MainClassType"
 	
 	ClassType(c) : refers to Class c
 	Parent(c) : refers to Class c
 	NewObject(c) : refers to Class c
-	
-	Program(_,_) : scopes Class scopes Method
 	
 	
 	//

@@ -16,12 +16,13 @@ class C extends Base {
 	int duplicateField;
 	int duplicateField;
 	someclass cc;
-	int var;
+	int hiding;
 	MissingClass errorField;
 	
-	public int method ( int var, int duplicateParam, int duplicateParam )
+	public int method ( int param, int hiding )
 	{
 		int var;
+		int hiding;
 		int duplicateVar;
 		int duplicateVar;
 		
@@ -30,9 +31,26 @@ class C extends Base {
 		
 		v = new Base();
 		
+		var = param + field + var;
+		
+		missingVar = param + field;
+		var = missingParam;
+		var = missingField;
+		
 		
 		return 1;
 	}
 }
 
 class C2 extends MissingClass {}
+
+class MainAbuserClass extends Main
+{
+	Main fieldMain;
+	
+	public int method ()
+	{
+		fieldMain = new Main();
+		return 0;
+	}
+}

@@ -20,6 +20,19 @@ signature
 
 rules
 
+  nabl-scoping-site =
+    ?Program(_, _)
+    ; origin-track-forced(
+        nabl-scope(
+        | [NablNsClass(), NablNsMethod()]
+        )
+      |
+      )
+
+  nabl-get-scope =
+    ?Program(_, _)
+    ; ![NablNsClass(), NablNsMethod()]
+
   nabl-get-scope =
     ?Class(c, _, _, _)
     ; ![NablNsField()]
@@ -89,7 +102,7 @@ rules
         MainClass(
           nabl-store-props(
           | partition__
-          , [Prop(Type(), "mainClass", [])]
+          , [Prop(Type(), "MainClassType", [])]
           )
         , id
         , id
@@ -171,19 +184,6 @@ rules
         )
       |
       )
-
-  nabl-scoping-site =
-    ?Program(_, _)
-    ; origin-track-forced(
-        nabl-scope(
-        | [NablNsClass(), NablNsMethod()]
-        )
-      |
-      )
-
-  nabl-get-scope =
-    ?Program(_, _)
-    ; ![NablNsClass(), NablNsMethod()]
 
   nabl-get-scope =
     ?Method(_, m, _, _, _, _)
