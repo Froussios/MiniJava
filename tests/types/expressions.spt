@@ -1,0 +1,142 @@
+module types
+
+language MiniJava
+
+start symbol Start
+
+// TODO: is this the way to do it?
+setup Common [[
+	class Main
+	{
+		public static void main ( String[] args )
+		{
+			System.out.println(0);
+		}
+	}
+]]
+
+test integer literal type [[
+	class C 
+	{
+		public int method ( )
+		{
+			System.out.println ( [[1]] );
+		}
+	}
+]] run get-type to Int()
+
+test variable reference type [[
+	class C 
+	{
+		public int method ()
+		{
+			System.out.println(new Foo().run());
+		}
+	}
+	
+	class Foo 
+	{
+		public int run()
+		{
+			boolean x;
+			int y;
+			if ([[x]])
+				y = 1;
+			else
+				y = 0;
+			return y;
+		}
+	}
+]] run get-type to Bool()
+
+
+test operation add [[
+	class C
+	{
+		public int method ()
+		{
+			int i;
+			i = [[1+2]];
+			return i;
+		}
+	}
+]] run get-type to Int()
+
+
+test operation minus [[
+	class C
+	{
+		public int method ()
+		{
+			int i;
+			i = [[3-2]];
+			return i;
+		}
+	}
+]] run get-type to Int()
+
+
+test operation multiply [[
+	class C
+	{
+		public int method ()
+		{
+			int i;
+			i = [[3*5]];
+			return i;
+		}
+	}
+]] run get-type to Int()
+
+
+test operation and [[
+	class C
+	{
+		public int method ()
+		{
+			boolean b;
+			b = [[true && false]];
+			return 0;
+		}
+	}
+]] run get-type to Bool()
+
+
+test operation lessThan [[
+	class C
+	{
+		public int method ()
+		{
+			boolean b;
+			b = [[5<5]];
+			return 0;
+		}
+	}
+]] run get-type to Bool()
+
+
+test new array size type [[
+	class C
+	{
+		public int method ()
+		{
+			int[] arr;
+			arr = new int[ [[5]] ];
+			return 0;
+		}
+	}
+]] run get-type to Int()
+
+test array index type [[
+	class C
+	{
+		public int method ()
+		{
+			int[] arr;
+			arr = new int[5];
+			arr[0] = arr[ [[1]] ];
+		}
+	}
+]] run get-type to Int()
+
+// TODO: more more more

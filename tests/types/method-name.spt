@@ -1,0 +1,29 @@
+module types
+
+language MiniJava
+
+
+test method name resolution [[
+	class Main
+	{
+		public static void main ( String[] args )
+		{
+			System.out.println(new Fool().[[run]]());
+		}
+	}
+	
+	class Foo
+	{
+		public int [[run]]()
+		{
+			return 1;
+		}
+	}
+]] resolve #1 to #2
+
+// TODO: forward / backward
+// TODO: homonyms
+// TODO: overriding
+// TODO: class hierachies
+
+// TODO: duplicate, missing, overloading, overriding

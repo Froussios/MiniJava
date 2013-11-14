@@ -1,6 +1,0 @@
-module namebiding/type-constructors
-
-signature
-	
-	constructors
-		MAINCLASS : Class

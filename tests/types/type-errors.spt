@@ -1,0 +1,13 @@
+module types
+
+language MiniJava
+
+test print boolean [[
+	class Main 
+	{
+		public static void main ( String[] args )
+		{
+			System.out.println([[true]]);
+		}
+	}
+]] 1 error

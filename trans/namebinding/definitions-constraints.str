@@ -8,16 +8,24 @@ imports
   runtime/task/-
   runtime/types/-
   namebinding/resolution-rules
-  namebinding/type-constructors
-  
+
 	
+
 strategies
 
   nabl-check-disable-duplicate(|uri, ns) = id
   nabl-check-disable-hiding(|uri, ns) = id
   nabl-check-disable-unresolved = id
+
+
+signature
 	
+	constructors
+		MainClassType : Type
+	
+
 rules
+	
 
 	//
 	// Errors for undefined references
@@ -132,7 +140,7 @@ rules
 		ClassType(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, MAINCLASS())> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, MainClassType())> lookup ;
 			msg    := "Illegal reference to main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
 	
@@ -140,7 +148,7 @@ rules
 		Parent(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, MAINCLASS())> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, MainClassType())> lookup ;
 			msg    := "Illegal reference to main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
 	
@@ -148,7 +156,7 @@ rules
 		NewObject(c) -> <fail>
 		where
 			lookup := <type-lookup(|ctx)> c ;
-			match  := <type-match(|ctx, MAINCLASS())> lookup ; //TODO: where should I have declared a constructor?
+			match  := <type-match(|ctx, MainClassType())> lookup ;
 			msg    := "Illegal instantiation of main class" ;
 			<task-create-error-on-success(|ctx, match, msg)> c
     
