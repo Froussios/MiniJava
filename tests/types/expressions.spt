@@ -18,22 +18,15 @@ setup Common [[
 test integer literal type [[
 	class C 
 	{
-		public int method ( )
+		public int method ()
 		{
 			System.out.println ( [[1]] );
+			return 0;
 		}
 	}
 ]] run get-type to Int()
 
-test variable reference type [[
-	class C 
-	{
-		public int method ()
-		{
-			System.out.println(new Foo().run());
-		}
-	}
-	
+test variable reference type boolean[[	
 	class Foo 
 	{
 		public int run()
@@ -48,6 +41,71 @@ test variable reference type [[
 		}
 	}
 ]] run get-type to Bool()
+
+test variable reference type int[[
+	class C
+	{
+		public int method ()
+		{
+			int i;
+			int j;
+			i = 5;
+			j = [[i]];
+			return j;
+		}
+		
+	}
+]] run get-type to Int()
+
+test variable reference type int array [[
+	class C
+	{
+		public int method ()
+		{
+			int[] arr;
+			int[] arr2;
+			arr = new int[5];
+			arr2 = [[arr]];
+			return arr2;
+		}
+	}
+]] run get-type to IntArray()
+
+
+test this variable int [[
+	class C
+	{
+		int i;
+		public int method()
+		{
+			return [[this.i]];
+		}
+	}	
+]] run get-type to Int()
+
+
+test this field boolean [[
+	class C
+	{
+		boolean b;
+		public boolean method ()
+		{
+			return [[this.b]];
+		}
+	}
+]] run get-type to Bool()
+
+
+test this field int array [[
+	class C
+	{
+		int[] arr;
+		public int[] method ()
+		{
+			return [[this.arr]];
+		}
+	}
+]] run get-type to IntArray()
 
 
 test operation add [[
@@ -114,6 +172,28 @@ test operation lessThan [[
 	}
 ]] run get-type to Bool()
 
+test operation not [[
+	class C
+	{
+		public boolean method ()
+		{
+			return [[!true]];
+		}
+	}
+]] run get-type to Bool()
+
+test operation not [[
+	class C
+	{
+		public boolean method ()
+		{
+			boolean b;
+			b = false;
+			return [[b]];
+		}
+	}
+]] run get-type to Bool()
+
 
 test new array size type [[
 	class C
@@ -127,6 +207,20 @@ test new array size type [[
 	}
 ]] run get-type to Int()
 
+
+test new array type [[
+	class C
+	{
+		public int method ()
+		{
+			int[] arr;
+			arr = [[ new int[5] ]];
+			return 0;
+		}
+	}
+]] run get-type to IntArray()
+
+
 test array index type [[
 	class C
 	{
@@ -135,8 +229,203 @@ test array index type [[
 			int[] arr;
 			arr = new int[5];
 			arr[0] = arr[ [[1]] ];
+			return 0;
 		}
 	}
 ]] run get-type to Int()
 
-// TODO: more more more
+test array indexing [[
+	class C
+	{
+		public int method ()
+		{
+			int[] arr;
+			arr = new int[5];
+			arr[0] = [[arr]] [1];
+			return 0;
+		}
+	}
+]] run get-type to IntArray()
+
+test array [[
+	class C
+	{
+		public int method ()
+		{
+			int[] arr;
+			arr = new int[2];
+			return [[ arr[1] ]];
+		}
+	}
+]] run get-type to IntArray()
+
+
+test array length [[
+	class C
+	{
+		public int method ()
+		{
+			int[] arr;
+			arr = new int[5];
+			return [[arr.length]];
+		}
+	}
+]] run get-type to Int()
+
+test array length [[
+	class C
+	{
+		public int method ()
+		{
+			int[] arr;
+			arr = new int[5];
+			return [[arr]].length;
+		}
+	}
+]] run get-type to IntArray()
+
+
+test boolean literal [[
+	class C
+	{
+		public boolean method ()
+		{
+			return [[true]];
+		}
+	}
+]] run get-type to Bool()
+
+test boolean literal [[
+	class C
+	{
+		public boolean method ()
+		{
+			return [[false]];
+		}
+	}
+]] run get-type to Bool()
+
+
+
+//
+// ClassType resolution
+//
+
+test new instance [[
+	class C
+	{
+		public C method ()
+		{
+			return [[new C()]];
+		}
+	}
+]] run get-type to ClassType(C)
+
+test this [[
+	class C
+	{
+		int i;
+		public int method()
+		{
+			return [[this]].i;
+		}
+	}
+]] run get-type to ClassType(C)
+
+test this class field [[
+	class F {}
+	class C
+	{
+		F f;
+		public F method()
+		{
+			return [[this.f]];
+		}
+	}
+]] run get-type to ClassType(F)
+
+test class field [[
+	class F{}
+	class C
+	{
+		F f;
+		public F method ()
+		{
+			return [[f]];
+		}
+	}
+]] run get-type to ClassType(F)
+
+test this class method [[
+	class C
+	{
+		public int method ()
+		{
+			return 0;
+		}
+		public int method2 ()
+		{
+			return [[this]].method();
+		} 
+	}
+]] run get-type to Class(C)
+
+test call class method from other class [[
+	class C
+	{
+		public int method ()
+		{
+			return 0;
+		}
+	}
+	
+	class F
+	{
+		public int method ()
+		{
+			return [[new C()]].method();
+		}
+	}
+]] run get-type to ClassType(C)
+
+
+
+//
+// Method return types
+//
+
+
+
+test method return type boolean [[
+	class C
+	{
+		public boolean method ()
+		{
+			return true;
+		}
+	}
+	class Caller
+	{
+		public boolean method ()
+		{
+			return [[(new C()).method()]];
+		}
+	}
+]] run get-type to Int()
+
+test method return type class [[
+	class C
+	{
+		public C method ()
+		{
+			return new C();
+		}
+	}
+	class Caller
+	{
+		public C method ()
+		{
+			return [[(new C()).method()]];
+		}
+	}
+]] run get-type to ClassType(C)

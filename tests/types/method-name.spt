@@ -1,14 +1,26 @@
 module types
 
 language MiniJava
+start symbol Start
 
-
-test method name resolution [[
+setup Common [[
 	class Main
 	{
 		public static void main ( String[] args )
 		{
-			System.out.println(new Fool().[[run]]());
+			System.out.println(0);
+		}
+	}
+]]
+
+
+test method name resolution [[
+	class C
+	{
+		public int main ()
+		{
+			System.out.println(new Foo().[[run]]());
+			return 0;
 		}
 	}
 	
@@ -20,6 +32,351 @@ test method name resolution [[
 		}
 	}
 ]] resolve #1 to #2
+
+
+//
+// Homonyms
+//
+
+
+test backward homonym method name resolution [[
+	class C
+	{
+		public int [[method]] () { return 0; }
+	}
+	
+	class F
+	{
+		public int method () { return 1; }
+	}
+	
+	class Caller
+	{
+		public int method2 ()
+		{
+			return new C().[[method]]();
+		}
+	}
+	
+]] resolve #2 to #1
+
+test homonym method name resolution [[
+	
+	class Caller
+	{
+		public int method2 ()
+		{
+			return new C().[[method]]();
+		}
+	}
+	
+	class C
+	{
+		public int [[method]] (){ return 0; }
+	}
+	
+	class F
+	{
+		public int method () { return 1; }
+	}
+	
+]] resolve #2 to #1
+
+
+test homonym own method name resolution [[
+	class C
+	{
+		public int [[method]] () { return 0; }
+		public int call ()
+		{
+			return this.[[method]]();
+		}
+	}
+	class F
+	{
+		public int method () { return 1; }
+	}
+]] resolve #2 to #1
+
+
+//
+// Overriding
+//
+
+
+test backward overriding method name resolution [[
+	class Base
+	{
+		public int method () { return 0; }
+	}
+	
+	class C extends Base
+	{
+		public int [[method]] () { return 1; }
+	}
+	
+	class Caller
+	{
+		public int method ()
+		{
+			return new C().[[method]]();
+		}
+	}
+]] resolve #2 to #1
+
+test backward overriding method name resolution [[
+	class Caller
+	{
+		public int method ()
+		{
+			return new C().[[method]]();
+		}
+	}
+	
+	class Base
+	{
+		public int method () { return 0; }
+	}
+	
+	class C extends Base
+	{
+		public int [[method]] () { return 1; }
+	}
+]] resolve #1 to #2
+
+test backward overriding method name resolution [[
+	class Base
+	{
+		public int [[method]] () { return 0; }
+	}
+	
+	class C extends Base
+	{
+		public int method () { return 1; }
+	}
+	
+	class Caller
+	{
+		public int method ()
+		{
+			return new Base().[[method]]();
+		}
+	}
+]] resolve #2 to #1
+
+test forward overriding method name resolution [[
+	class Caller
+	{
+		public int method ()
+		{
+			return new Base().[[method]]();
+		}
+	}
+	
+	class Base
+	{
+		public int [[method]] () { return 0; }
+	}
+	
+	class C extends Base
+	{
+		public int method () { return 1; }
+	}
+]] resolve #1 to #2
+
+
+test method name resolution with distant inheritance [[
+	class Base1
+	{
+		public int method (int p) { return 1; }
+	}
+	class Base2 extends Base1
+	{
+		public int [[method]] (int p) { return 2; }
+	}
+	class C extends Base2
+	{
+	}
+	class Caller
+	{
+		public int method ()
+		{
+			return (new C()).[[method]](1);
+		}
+	}
+]] resolve #2 to #1
+
+
+
+//
+// Duplicate method definitions
+// Overloading method definitions
+//
+
+test duplicate method definition error [[
+	class C
+	{
+		public int method () { return 1; }
+		public int method () { return 0; }
+	}
+]] 2 errors
+
+test duplicate method definition error [[
+	class C
+	{
+		public int method () { return 1; }
+		public boolean method () { return false; }
+	}
+]] 2 errors
+
+test overloading method definition error [[
+	class C
+	{
+		public int method () { return 1; }
+		public int method (int param) { return param; } 
+	}
+]] 2 errors
+
+test overloading method definition error [[
+	class C
+	{
+		public int method (int p1, int p2) { return 1; }
+		public int method (int p3, boolean p4) { return 0; }
+	}
+]] 2 errors
+
+test backward overloading from parent error [[
+	class Base 
+	{
+		public int method () { return 1; }
+	}
+	class C extends Base
+	{
+		public int method (int param) { return 0; }
+	}
+]] 1 error
+
+test forward overloading from parent error [[
+	class C extends Base
+	{
+		public int method (int param) { return 0; }
+	}
+	class Base 
+	{
+		public int method () { return 1; }
+	}
+]] 1 error
+
+
+//
+// Missing method difinition
+//
+
+
+test missing method error [[
+	class C
+	{
+		public int method ()
+		{
+			return this.missingMethod();
+		}
+	}
+]] 1 error
+
+test missing method error [[
+	class C
+	{
+		public int method () { return 0; }
+		public int caller ()
+		{
+			return this.method(1);
+		}
+	}
+]] 1 error
+
+test missing method error [[
+	class Caller
+	{
+		public int method ()
+		{
+			return (new C()).missingMethod();
+		}
+	}
+	class C
+	{
+		public int method () { return 0; }
+	}
+]] 1 error
+
+test missing method error [[
+	class Caller
+	{
+		public int method()
+		{
+			return (new Base()).method();
+		}
+	}
+	class Base {}
+	class C extends Base
+	{
+		public int method () { return 1; }
+	}
+]] 1 error
+
+test missing method error [[
+	class C {}
+	class Caller
+	{
+		C c;
+		public int method()
+		{
+			c = new C();
+			return c.missingMethod();
+		}
+	}
+]] 1 error
+
+test missing method error [[
+	class C 
+	{
+		public int method (int param) { return 0; }
+	}
+	class Caller
+	{
+		public int method ()
+		{
+			return (new C()).method();
+		}
+	}
+]] 1 error
+
+
+//
+// Method overriding
+//
+
+
+test overriden method note [[
+	class C extends Base
+	{
+		public int method () { return 1; }
+	}
+	class Base
+	{
+		public int method () { return 0; }
+	}
+]] 1 notes
+
+test override method note [[
+	class Base
+	{
+		public int method (int param) { return 1; }
+	}
+	class C extends Base
+	{
+		public int method (int param) { return 0; }
+	}
+]] 1 note
 
 // TODO: forward / backward
 // TODO: homonyms
