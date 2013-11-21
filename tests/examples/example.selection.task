@@ -1,0 +1,106 @@
+tasks
+
+  task 418 [] =
+    produce (Int(), Int(), Int())
+    ->
+    [(Int(), Int(), Int())]
+
+  task 1984 [] =
+    produce (IntArray(), Int(), Int())
+    ->
+    [(IntArray(), Int(), Int())]
+
+  task 450 [449, 448, 447] =
+    choose &447 <+ &448 <+ &449
+    ->
+    [def / Var:"arr"#0 / Method:"method1"#0 / Class:"CC"#0 / anon 0 /]
+
+  task 297 [] =
+    produce Int()
+    ->
+    [Int()]
+
+  task 449 [408] =
+    resolve NablNsField() "arr" in &408 wrt props []
+    ->
+    fail
+
+  task 448 [403] =
+    resolve NablNsParam() "arr" in &403 wrt props []
+    ->
+    fail
+
+  task 447 [397] =
+    resolve NablNsVar() "arr" in &397 wrt props []
+    ->
+    [def / Var:"arr"#0 / Method:"method1"#0 / Class:"CC"#0 / anon 0 /]
+
+  task 408 [405, 406, 407] =
+    concat [/ Class:"CC"#0 / anon 0 /] + &407 + [/ anon 0 /] + &406 + [/  /] + &405
+    ->
+    [/  /, / anon 0 /, / Class:"CC"#0 / anon 0 /]
+
+  task 405 [] =
+    lookup Import(NablNsField()) props on def /  /
+    ->
+    []
+
+  task 406 [] =
+    lookup Import(NablNsField()) props on def / anon 0 /
+    ->
+    []
+
+  task 407 [] =
+    lookup Import(NablNsField()) props on def / Class:"CC"#0 / anon 0 /
+    ->
+    []
+
+  task 403 [399, 400, 401, 402] =
+    concat [/ Method:"method1"#0 / Class:"CC"#0 / anon 0 /] + &402 + [/ Class:"CC"#0 / anon 0 /] + &401 + [/ anon 0 /] + &400 + [/  /] + &399
+    ->
+    [/  /, / anon 0 /, / Class:"CC"#0 / anon 0 /, / Method:"method1"#0 / Class:"CC"#0 / anon 0 /]
+
+  task 399 [] =
+    lookup Import(NablNsParam()) props on def /  /
+    ->
+    []
+
+  task 400 [] =
+    lookup Import(NablNsParam()) props on def / anon 0 /
+    ->
+    []
+
+  task 401 [] =
+    lookup Import(NablNsParam()) props on def / Class:"CC"#0 / anon 0 /
+    ->
+    []
+
+  task 402 [] =
+    lookup Import(NablNsParam()) props on def / Method:"method1"#0 / Class:"CC"#0 / anon 0 /
+    ->
+    []
+
+  task 397 [393, 394, 395, 396] =
+    concat [/ Method:"method1"#0 / Class:"CC"#0 / anon 0 /] + &396 + [/ Class:"CC"#0 / anon 0 /] + &395 + [/ anon 0 /] + &394 + [/  /] + &393
+    ->
+    [/  /, / anon 0 /, / Class:"CC"#0 / anon 0 /, / Method:"method1"#0 / Class:"CC"#0 / anon 0 /]
+
+  task 393 [] =
+    lookup Import(NablNsVar()) props on def /  /
+    ->
+    []
+
+  task 394 [] =
+    lookup Import(NablNsVar()) props on def / anon 0 /
+    ->
+    []
+
+  task 395 [] =
+    lookup Import(NablNsVar()) props on def / Class:"CC"#0 / anon 0 /
+    ->
+    []
+
+  task 396 [] =
+    lookup Import(NablNsVar()) props on def / Method:"method1"#0 / Class:"CC"#0 / anon 0 /
+    ->
+    []

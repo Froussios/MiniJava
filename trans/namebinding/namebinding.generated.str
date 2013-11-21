@@ -1,0 +1,96 @@
+module trans/namebinding/namebinding.generated
+
+imports
+  lib/runtime/nabl/-
+  lib/runtime/task/-
+  lib/runtime/types/-
+  lib/runtime/properties/-
+  
+  
+rules
+  
+  create-type-task(|ctx) :
+    IntValue(v) -> <type-is(|ctx, [])> Int()
+    where id
+  
+  create-type-task(|ctx) :
+    False -> <type-is(|ctx, [])> Bool()
+    where id
+  
+  create-type-task(|ctx) :
+    True -> <type-is(|ctx, [])> Bool()
+    where id
+  
+  create-type-task(|ctx) :
+    UnExp(op, e) -> <type-is(|ctx, [t32, opin, ty, ety, eq100])> ty
+    where t32 := <type-task(|ctx)> op;
+          opin := <new-task(|ctx)> Rewrite("proj86", t32);
+          ty := <new-task(|ctx)> Rewrite("proj87", t32);
+          ety := <type-task(|ctx)> e;
+          eq100 := <type-match(|ctx, opin)> ety
+  
+  create-type-task(|ctx) :
+    NOT() -> <type-is(|ctx, [])> (Bool(), Bool())
+    where id
+  
+  create-type-task(|ctx) :
+    LENGTH() -> <type-is(|ctx, [])> (IntArray(), Int())
+    where id
+  
+  create-type-task(|ctx) :
+    NEWARRAY() -> <type-is(|ctx, [])> (Int(), IntArray())
+    where id
+  
+  create-type-task(|ctx) :
+    BinExp(op, e1, e2) -> <type-is(|ctx, [t33, opin1, opin2, ty, ety1, eq101, ety2, eq102])> ty
+    where t33 := <type-task(|ctx)> op;
+          opin1 := <new-task(|ctx)> Rewrite("proj83", t33);
+          opin2 := <new-task(|ctx)> Rewrite("proj84", t33);
+          ty := <new-task(|ctx)> Rewrite("proj85", t33);
+          ety1 := <type-task(|ctx)> e1;
+          eq101 := <type-match(|ctx, opin1)> ety1;
+          ety2 := <type-task(|ctx)> e2;
+          eq102 := <type-match(|ctx, opin2)> ety2
+  
+  create-type-task(|ctx) :
+    ADD() -> <type-is(|ctx, [])> (Int(), Int(), Int())
+    where id
+  
+  create-type-task(|ctx) :
+    SUB() -> <type-is(|ctx, [])> (Int(), Int(), Int())
+    where id
+  
+  create-type-task(|ctx) :
+    MUL() -> <type-is(|ctx, [])> (Int(), Int(), Int())
+    where id
+  
+  create-type-task(|ctx) :
+    LT() -> <type-is(|ctx, [])> (Int(), Int(), Bool())
+    where id
+  
+  create-type-task(|ctx) :
+    AND() -> <type-is(|ctx, [])> (Bool(), Bool(), Bool())
+    where id
+  
+  create-type-task(|ctx) :
+    SUBSCRIPT() -> <type-is(|ctx, [])> (IntArray(), Int(), Int())
+    where id
+  
+  
+rules // projections
+  
+  task-rewrite :
+    ("proj87", (opin, ty)) -> ty
+  
+  task-rewrite :
+    ("proj86", (opin, ty)) -> opin
+  
+  task-rewrite :
+    ("proj85", (opin1, opin2, ty)) -> ty
+  
+  task-rewrite :
+    ("proj84", (opin1, opin2, ty)) -> opin2
+  
+  task-rewrite :
+    ("proj83", (opin1, opin2, ty)) -> opin1
+  

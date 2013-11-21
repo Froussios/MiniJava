@@ -17,11 +17,12 @@ signature
   LENGTH 	: UnOp
   NEWARRAY 	: UnOp
   
-  ADD : BinOp
-  SUB : BinOp
-  MUL : BinOp
-  AND : BinOp
-  LT  : BinOp
+  ADD 		: BinOp
+  SUB 		: BinOp
+  MUL 		: BinOp
+  AND 		: BinOp
+  LT  		: BinOp
+  SUBSCRIPT : BinOp
   
   UnExp 	: UnOp * Exp 			-> Exp
   BinExp 	: BinOp * Exp * Exp 	-> Exp
@@ -29,11 +30,12 @@ signature
 rules
   
   // desugar: ... -> ...
-  desugar : Add(e1,e2) -> BinExp(ADD(), e1, e2)
-  desugar : Sub(e1,e2) -> BinExp(SUB(), e1, e2)
-  desugar : Mul(e1,e2) -> BinExp(MUL(), e1, e2)
-  desugar : And(e1,e2) -> BinExp(AND(), e1, e2)
-  desugar : Lt (e1,e2) -> BinExp(LT (), e1, e2)
+  desugar : Add			(e1,e2) 	-> BinExp(ADD(), e1, e2)
+  desugar : Sub			(e1,e2) 	-> BinExp(SUB(), e1, e2)
+  desugar : Mul			(e1,e2) 	-> BinExp(MUL(), e1, e2)
+  desugar : And			(e1,e2) 	-> BinExp(AND(), e1, e2)
+  desugar : Lt 			(e1,e2) 	-> BinExp(LT (), e1, e2)
+  desugar : Subscript	(e1,e2) 	-> BinExp(SUBSCRIPT(), e1, e2)
   
   desugar : Not(e) -> UnExp(NOT(), e)
   desugar : Length(e) -> UnExp(LENGTH(), e)

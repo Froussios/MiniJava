@@ -15,46 +15,39 @@ class CC
 	// Insert method declarations here 
 	public int method1 ( int i1, int i2, boolean b ) 
 	{ 
-		boolean b;
 		boolean bb;
 		int rv;
 		int id;
+		int[] arr;
 		CCC customvar; 
 		
-		if ( false )
+		arr = new int[ 5 ];
+		arr[2] = arr[ 1 ] + 1;
+		
+		if ( !false )
 		{
 			b = false;
 			rv = 1;
 		}
 		else
 		{
-			rv = 2;
+			rv = 2 + 3;
+			rv = true + 1;
+			b = b && true;
 		}
-		if ( true )
+		if ( b )
 			rv = 1;
 		else
 			rv = 2;
 		
-		while (true)
+		while ( true && false )
 		{
 			rv = 2;
-			rv = 1;
+			rv = arr.length;
 		}
-		while (rv < 10)
+		while ( 5 < 10 )
 			rv = rv + 1;
-		
 		return rv;
-	}
-	
-	public int get ( ) 
-	{ 
-		id = new sadf();
-		return id;
-	}
-	public int set ( int in ) 
-	{ 
-		id = in;
-		return 1;
 	}
 	
 	public int desugarme()

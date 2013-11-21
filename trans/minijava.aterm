@@ -1,0 +1,367 @@
+Module(
+  "minijava"
+, [ Imports(
+      [ Import("libstratego-lib")
+      , Import("libstratego-gpp")
+      , Import("libstratego-aterm")
+      , Import("assignment1/MiniJava")
+      , Import("assignment1/pp")
+      , Import("lib/editor-common.generated")
+      , ImportWildcard("lib/runtime/analysis")
+      , ImportWildcard("lib/runtime/nabl")
+      , ImportWildcard("lib/runtime/properties")
+      , ImportWildcard("lib/runtime/types")
+      , ImportWildcard("lib/runtime/task")
+      , ImportWildcard("lib/runtime/index")
+      , Import("editor/outline")
+      , Import("editor/builders")
+      , Import("analysis/desugar")
+      , Import("trans/namebinding/resolution-rules")
+      , Import("trans/namebinding/definitions-constraints")
+      , Import("trans/namebinding/namebinding.generated")
+      ]
+    )
+  , Rules(
+      [ SDefT(
+          "editor-analyze"{1600429}
+        , []
+        , []
+        , CallT(SVar("analysis-default-editor"{1599894}), [], [])
+        )
+      , SDefT(
+          "analysis-single-default-interface"{1599898}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-single-default"{1599899})
+          , [CallT(SVar("desugar-all"{1600421}), [], []), Id(), Id()]
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      , SDefT(
+          "analysis-multiple-default-interface"{1599900}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-multiple-default"{1599902})
+          , [ GuardedLChoice(
+                CallT(SVar("parse-file"{1599798}), [], [])
+              , Id()
+              , Build(NoAnnoList(Tuple([])))
+              )
+            , CallT(SVar("desugar-all"{1600421}), [], [])
+            , Id()
+            , Id()
+            ]
+          , [ RootApp(CallT(SVar("language"{1599805}), [], []))
+            , RootApp(CallT(SVar("project-path"{1599811}), [], []))
+            ]
+          )
+        )
+      , SDefT(
+          "editor-save"{1600430}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-save-default"{1599916})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      ]
+    )
+  , Rules(
+      [ SDefT(
+          "editor-resolve"{1600431}
+        , []
+        , []
+        , SRule(
+            Rule(
+              NoAnnoList(
+                Tuple(
+                  [ Var("node"{1600445})
+                  , Var("position"{1600446})
+                  , Var("ast"{1600447})
+                  , Var("path"{1600448})
+                  , Var("project-path"{1600449})
+                  ]
+                )
+              )
+            , Var("definition"{1600450})
+            , [ WhereClause(
+                  Assign(
+                    Var("definition"{1600450})
+                  , App(
+                      CallT(
+                        SVar("analysis-resolve"{1599933})
+                      , []
+                      , [RootApp(CallT(SVar("language"{1599805}), [], [])), Var("project-path"{1600449})]
+                      )
+                    , Var("node"{1600445})
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "editor-hover"{1600432}
+        , []
+        , []
+        , SRule(
+            Rule(
+              NoAnnoList(
+                Tuple(
+                  [ Var("target"{1600451})
+                  , Var("position"{1600452})
+                  , Var("ast"{1600453})
+                  , Var("path"{1600454})
+                  , Var("project-path"{1600455})
+                  ]
+                )
+              )
+            , Var("msg"{1600457})
+            , [ WhereClause(
+                  Seq(
+                    Assign(
+                      Var("type"{1600456})
+                    , App(CallT(SVar("get-type"{1600213}), [], []), Var("target"{1600451}))
+                    )
+                  , Assign(
+                      Var("msg"{1600457})
+                    , NoAnnoList(
+                        StringQuotation1(
+                          "\t\t\t         "
+                        , [ StringEscape1("\t\t\t         ", Var("type"{1600456}))
+                          , QStr(" :: ")
+                          , StringEscape1("\t\t\t                   ", Var("target"{1600451}))
+                          , QStr(" ")
+                          ]
+                        )
+                      )
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "editor-complete"{1600433}
+        , []
+        , []
+        , SRule(
+            Rule(
+              NoAnnoList(
+                Tuple(
+                  [ Var("node"{1600458})
+                  , Var("position"{1600459})
+                  , Var("ast"{1600460})
+                  , Var("path"{1600461})
+                  , Var("project-path"{1600462})
+                  ]
+                )
+              )
+            , Var("proposals"{1600463})
+            , [ WhereClause(
+                  Assign(
+                    Var("proposals"{1600463})
+                  , App(
+                      CallT(
+                        SVar("analysis-propose-completions"{1599858})
+                      , []
+                      , [RootApp(CallT(SVar("language"{1599805}), [], [])), Var("project-path"{1600462})]
+                      )
+                    , Var("ast"{1600460})
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      ]
+    )
+  , Rules(
+      [ SDefT(
+          "debug-show-aterm"{1600434}
+        , []
+        , []
+        , SRule(
+            Rule(
+              NoAnnoList(
+                Tuple(
+                  [ Var("selected"{1600464})
+                  , Var("position"{1600465})
+                  , Var("ast"{1600466})
+                  , Var("path"{1600467})
+                  , Var("project-path"{1600468})
+                  ]
+                )
+              )
+            , NoAnnoList(Tuple([Var("filename"{1600469}), Var("selected"{1600464})]))
+            , [ WithClause(
+                  Assign(
+                    Var("filename"{1600469})
+                  , App(
+                      CallT(SVar("guarantee-extension"{1598422}), [], [NoAnnoList(Str("\"aterm\""))])
+                    , Var("path"{1600467})
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "debug-show-desugared"{1600435}
+        , []
+        , []
+        , SRule(
+            Rule(
+              NoAnnoList(
+                Tuple(
+                  [ Var("selected"{1600470})
+                  , Var("position"{1600471})
+                  , Var("ast"{1600472})
+                  , Var("path"{1600473})
+                  , Var("project-path"{1600474})
+                  ]
+                )
+              )
+            , NoAnnoList(Tuple([Var("filename"{1600475}), Var("result"{1600476})]))
+            , [ WithClause(
+                  Seq(
+                    Assign(
+                      Var("filename"{1600475})
+                    , App(
+                        CallT(SVar("guarantee-extension"{1598422}), [], [NoAnnoList(Str("\"analyzed.aterm\""))])
+                      , Var("path"{1600473})
+                      )
+                    )
+                  , Assign(
+                      Var("result"{1600476})
+                    , App(CallT(SVar("desugar-all"{1600421}), [], []), Var("selected"{1600470}))
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT("desugar-all"{1600421}, [], [], Fail())
+      , SDefT(
+          "debug-show-analyzed"{1600436}
+        , []
+        , []
+        , SRule(
+            Rule(
+              NoAnnoList(
+                Tuple(
+                  [ Var("selected"{1600477})
+                  , Var("position"{1600478})
+                  , Var("ast"{1600479})
+                  , Var("path"{1600480})
+                  , Var("project-path"{1600481})
+                  ]
+                )
+              )
+            , NoAnnoList(Tuple([Var("filename"{1600482}), Var("selected"{1600477})]))
+            , [ WithClause(
+                  Assign(
+                    Var("filename"{1600482})
+                  , App(
+                      CallT(SVar("guarantee-extension"{1598422}), [], [NoAnnoList(Str("\"analyzed.aterm\""))])
+                    , Var("path"{1600480})
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      , SDefT(
+          "debug-project"{1600437}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-debug-project"{1599889})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      , SDefT(
+          "debug-partition"{1600438}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-debug-partition"{1599890})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      , SDefT(
+          "debug-index-project"{1600439}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-debug-index-project"{1599882})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      , SDefT(
+          "debug-index-partition"{1600440}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-debug-index-partition"{1599883})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      , SDefT(
+          "debug-task-project"{1600441}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-debug-task-project"{1599886})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      , SDefT(
+          "debug-task-partition"{1600442}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-debug-task-partition"{1599887})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      , SDefT(
+          "debug-task-selection"{1600443}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-debug-task-selection"{1599888})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      , SDefT(
+          "debug-reanalyze"{1600444}
+        , []
+        , []
+        , CallT(
+            SVar("analysis-debug-reanalyze"{1599893})
+          , []
+          , [RootApp(CallT(SVar("language"{1599805}), [], []))]
+          )
+        )
+      ]
+    )
+  ]
+)

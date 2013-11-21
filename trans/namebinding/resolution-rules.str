@@ -39,6 +39,9 @@ rules
   nabl-get-name :
     Class(c, _, _, _) -> c
 
+  nabl-name-apply(s) =
+    Class(s, id, id, id)
+
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
     ?Class(c, _, _, _)
     ; origin-track-forced(
@@ -55,6 +58,7 @@ rules
           , Unique()
           , Current()
           , [NablNsField(), NablNsMethod()]
+          , []
           )
         , id
         , id
@@ -68,6 +72,9 @@ rules
 
   nabl-get-name :
     MainClass(m, _, _) -> m
+
+  nabl-name-apply(s) =
+    MainClass(s, id, id)
 
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
     ?MainClass(m, _, _)
@@ -84,6 +91,7 @@ rules
           , NablNsClass()
           , Unique()
           , Current()
+          , []
           , []
           )
         , id
@@ -113,6 +121,9 @@ rules
   nabl-get-name :
     ClassType(c) -> c
 
+  nabl-name-apply(s) =
+    ClassType(s)
+
   nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
     ?ClassType(c)
     ; origin-track-forced(
@@ -138,6 +149,9 @@ rules
   nabl-get-name :
     Parent(c) -> c
 
+  nabl-name-apply(s) =
+    Parent(s)
+
   nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
     ?Parent(c)
     ; origin-track-forced(
@@ -162,6 +176,9 @@ rules
 
   nabl-get-name :
     NewObject(c) -> c
+
+  nabl-name-apply(s) =
+    NewObject(s)
 
   nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
     ?NewObject(c)
@@ -192,6 +209,9 @@ rules
   nabl-get-name :
     Method(_, m, _, _, _, _) -> m
 
+  nabl-name-apply(s) =
+    Method(id, s, id, id, id, id)
+
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
     ?Method(_, m, _, _, _, _)
     ; origin-track-forced(
@@ -209,6 +229,7 @@ rules
           , Unique()
           , Current()
           , [NablNsVar(), NablNsParam()]
+          , []
           )
         , id
         , id
@@ -223,6 +244,9 @@ rules
 
   nabl-get-name :
     Call(_, m, _) -> m
+
+  nabl-name-apply(s) =
+    Call(id, s, id)
 
   nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
     ?Call(_, m, _)
@@ -251,6 +275,9 @@ rules
   nabl-get-name :
     Param(t, p) -> p
 
+  nabl-name-apply(s) =
+    Param(id, s)
+
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
     ?Param(t, p)
     ; origin-track-forced(
@@ -267,6 +294,7 @@ rules
           , NablNsParam()
           , Unique()
           , Current()
+          , []
           , []
           )
         )
@@ -292,6 +320,9 @@ rules
   nabl-get-name :
     Field(t, f) -> f
 
+  nabl-name-apply(s) =
+    Field(id, s)
+
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
     ?Field(t, f)
     ; origin-track-forced(
@@ -308,6 +339,7 @@ rules
           , NablNsField()
           , Unique()
           , Current()
+          , []
           , []
           )
         )
@@ -333,6 +365,9 @@ rules
   nabl-get-name :
     Var(t, v) -> v
 
+  nabl-name-apply(s) =
+    Var(id, s)
+
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, partition__, uniques__, uri__, states__) =
     ?Var(t, v)
     ; origin-track-forced(
@@ -349,6 +384,7 @@ rules
           , NablNsVar()
           , Unique()
           , Current()
+          , []
           , []
           )
         )
@@ -373,6 +409,9 @@ rules
 
   nabl-get-name :
     VarRef(v) -> v
+
+  nabl-name-apply(s) =
+    VarRef(s)
 
   nabl-use-site(|lang__, partition__, uniques__, uris__, states__) =
     ?VarRef(v)

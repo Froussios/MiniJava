@@ -19,15 +19,21 @@ imports
   analysis/desugar
   trans/namebinding/resolution-rules
   trans/namebinding/definitions-constraints
+  trans/namebinding/namebinding.generated
   
 rules // Analysis
 	
 	editor-analyze = analysis-default-editor
-	
+	 
 	analysis-single-default-interface = 
-		analysis-single-default(id, id, id|<language>)
+		analysis-single-default(desugar-all, id, id|<language>)
 	analysis-multiple-default-interface = 
-		analysis-multiple-default(parse-file <+ !(), id, id, id|<language>, <project-path>)
+		analysis-multiple-default(parse-file <+ !(), desugar-all, id, id|<language>, <project-path>)
+
+	// analysis-single-default-interface = 
+	// 	analysis-single-default(id, id, id|<language>)
+	// analysis-multiple-default-interface = 
+	// 	analysis-multiple-default(parse-file <+ !(), id, id, id|<language>, <project-path>)
 	
   // analysis-single-default-interface = 
   //   analysis-single-default(desugar-all, id, id|<language>)
@@ -46,8 +52,12 @@ rules // Editor services
 
 	// Returns "hover help" information for a particular node in the editor.
 	// For references, this rule is invoked using the resolved term.
+	//editor-hover:
+	//	(target, position, ast, path, project-path) -> <fail>
 	editor-hover:
-		(target, position, ast, path, project-path) -> <fail>
+		(target, position, ast, path, project-path) -> msg
+		where
+			msg := <get-type> target
 
 	// Completes an identifier when the user presses control-space
 	// (the completion identifier in the AST provides additional context information)
